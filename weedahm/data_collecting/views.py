@@ -5,4 +5,4 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return render(request, 'datamining/datamining.html')
+    return render(request, 'data_collecting/main.html')
