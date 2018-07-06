@@ -1,0 +1,53 @@
+.w-container {
+  margin: 0 auto;
+  padding: 8px 10px 0;
+  width: 1080px;
+  text-align: left;
+  zoom: 1;
+}
+
+.column-left {
+  float: left;
+  width: 740px;
+}
+
+.column-right {
+  position: relative;
+  float: right;
+  width: 300px;
+}
+
+.w-panel {
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #dee3eb;
+  opacity: 1;
+}
+
+.bodychart-panel {
+  text-align: center;
+}
+
+.bodychart-form-field {
+  position: relative;
+}
+
+.bodychart-label {
+  padding-left: 0px;
+  padding-right: 5px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.bodychart-input-text {
+  border-radius: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: #00968D;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+}
