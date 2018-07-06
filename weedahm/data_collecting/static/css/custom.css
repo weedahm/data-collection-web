@@ -6,14 +6,43 @@ body, html {
   position: relative;
   overflow: hidden;
   min-width: 1100px;
+  background: #f2f4f7;
+}
+
+.w-header {
+  border-bottom: 1px solid #d1d8e4;
+  background: #fff;
+}
+
+.logo-section {
+  height: 140px;
+}
+
+.area-flex {
+  position: relative;
+  margin: 0 auto;
+  width: 1080px;
+  height: 100%;
+}
+
+.logo {
+  position: absolute;
+  top: 20%;
+}
+
+.top-navigation-container {
+  position: absolute;
+  top: 50%;
+  right: 8px;
 }
 
 .w-container {
   margin: 0 auto;
-  padding: 8px 10px 0;
+  padding: 8px 0px;
   width: 1080px;
   text-align: left;
   zoom: 1;
+  overflow: auto;
 }
 
 .column-left {
@@ -25,11 +54,11 @@ body, html {
 .column-right {
   position: relative;
   float: right;
-  width: 300px;
+  width: 330px;
   padding-top: 8px;
 }
 
-.column-bottom {
+.column-both {
   clear: both;
   padding-top: 8px;
   text-align: left;
@@ -41,6 +70,23 @@ body, html {
   background: #fff;
   border: 1px solid #dee3eb;
   opacity: 1;
+}
+
+.form-row.basic-information-row {
+  margin: 0px;
+  display: block;
+  overflow: auto;
+}
+
+.form-group.basic-information-group {
+  float: left;
+  margin-bottom: 0px;
+  margin: 2px 8px;
+}
+
+.form-group.basic-information-btn-group {
+  float: right;
+  margin-bottom: 0;
 }
 
 .bodychart-panel {
@@ -83,7 +129,7 @@ body, html {
 }
 
 .eav-panel {
-  height: 600px;
+  height: 592px;
 }
 
 .tongue-title-section-radio {
@@ -92,4 +138,79 @@ body, html {
   right: -3px;
   zoom: 1;
   margin-top: 8px;
+}
+
+.tongue-panel {
+  padding: 16px 8px;
+}
+
+.tongue-detail-form {
+  padding-top: 4px;
+  padding-left: 16px;
+  padding-bottom: 4px;
+}
+
+.form-check-label {
+  padding-right: 5px;
+}
+
+p.tongue-form-category {
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+}
+
+.section-footer {
+  margin-top: 16px;
+  border-top: 1px solid #e3e7ee;
+  background: #fff;
+  text-align: left;
+}
+
+.company-info {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 24px;
+  width: 1080px;
+  height: 132px;
+  zoom: 1;
+}
+
+.border-left {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+p.footer {
+  color: #888;
+  font-size: 12px;
+}
+
+.basic-information-input {
+  text-align: center;
+  font-weight: bold;
+  color: #00968D;
+  font-size: 18px;
+}
+
+.btn-custom {
+  margin-top: 32px;
+  padding:8px;
+  margin-bottom: 0px;
+}
+
+.form-group.eav-form-group {
+  margin-top: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.comment-panel {
+  height: 281px;
+  padding: 8px 2px;
+}
+
+.eav-btn-group {
+  position: absolute;
+  bottom: 12px;
 }
