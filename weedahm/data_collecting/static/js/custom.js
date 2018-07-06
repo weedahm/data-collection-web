@@ -147,7 +147,7 @@ $(document).ready(function ($) {
 
     //--->create data table > start
     var tbl = '';
-    tbl += '<table class="table table-hover">'
+    tbl += '<table class="table table-hover table-striped">'
 
     //--->create table header > start
     tbl += '<thead>';
@@ -172,24 +172,12 @@ $(document).ready(function ($) {
 
         //loop through ajax row data
         tbl += '<tr row_id="' + row_id + '">';
-        tbl += '<td ><div class="row_data" edit_type="click" col_name="pName">' + val['pName'] + '</div></td>';
-        tbl += '<td ><div class="row_data" edit_type="click" col_name="amount">' + val['amount'] + '</div></td>';
-        tbl += '<td ><div class="row_data" edit_type="click" col_name="numOfTime">' + val['numOfTime'] + '</div></td>';
-        tbl += '<td ><div class="row_data" edit_type="click" col_name="days">' + val['days'] + '</div></td>';
-        tbl += '<td ><div class="row_data" edit_type="click" col_name="text">' + val['text'] + '</div></td>';
-
-        //--->edit options > start
-        tbl += '<td>';
-
-        tbl += '<span class="btn_edit" > <a href="#" row_id="' + row_id + '" > Edit</a> </span>';
-
-        //only show this button if edit button is clicked
-        tbl += '<span class="btn_save"> <a href="#" row_id="' + row_id + '"> Save</a> | </span>';
-        tbl += '<span class="btn_cancel"> <a href="#" row_id="' + row_id + '"> Cancel</a> | </span>';
-
-        tbl += '</td>';
+        tbl += '<td scope="col"><div class="row_data" edit_type="click" col_name="pName">' + val['pName'] + '</div></td>';
+        tbl += '<td><div class="row_data" edit_type="click" col_name="amount">' + val['amount'] + '</div></td>';
+        tbl += '<td><div class="row_data" edit_type="click" col_name="numOfTime">' + val['numOfTime'] + '</div></td>';
+        tbl += '<td><div class="row_data" edit_type="click" col_name="days">' + val['days'] + '</div></td>';
+        tbl += '<td><div class="row_data" edit_type="click" col_name="text">' + val['text'] + '</div></td>';
         //--->edit options > end
-
         tbl += '</tr>';
     });
 
@@ -219,7 +207,6 @@ $(document).ready(function ($) {
         //make div editable
         $(this).closest('div').attr('contenteditable', 'true');
         //add bg css
-        $(this).addClass('').css('padding', '5px');
 
         $(this).focus();
     })
