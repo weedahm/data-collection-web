@@ -28,6 +28,17 @@
   text-align: center;
 }
 
+.section-header-div {
+  position: relative;
+  height: 44px;
+  border-bottom: 1px solid #ebeef3;
+  padding: 0px 16px;
+}
+
+.section-header-text {
+  font-size: 1.5rem;
+}
+
 .bodychart-form-field {
   position: relative;
 }
@@ -50,4 +61,8 @@
   font-size: 18px;
   width: 30px;
   height: 30px;
+}
+
+.prescription-panel {
+  height: 718px;
 }
