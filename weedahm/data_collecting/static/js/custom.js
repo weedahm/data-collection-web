@@ -5,8 +5,20 @@ function init_datatimepicker() {
     });
 }
 
+function init_vaild_check() {
+    $("#input-age").on("change paste keyup", function() {
+        var age = $(this).val()
+        if (age > 120) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+     });
+}
+
 $(document).ready(function ($) {
     init_datatimepicker();
+    init_vaild_check();
 
     var ajax_data = [{
             pName: "첩약1",
