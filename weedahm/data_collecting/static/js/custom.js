@@ -1,4 +1,13 @@
+function init_datatimepicker() {
+    $('.input-daterange').datepicker({
+        format: "yyyy/mm/dd",
+        language: "kr"
+    });
+}
+
 $(document).ready(function ($) {
+    init_datatimepicker();
+
     var ajax_data = [{
             pName: "첩약1",
             amount: "0.0000",
@@ -190,7 +199,7 @@ $(document).ready(function ($) {
     //--->create data table > end
 
     //out put table data
-    $(document).find('.tbl_user_data').html(tbl);
+    $(document).find('.section-prescription-table').html(tbl);
 
     $(document).find('.btn_save').hide();
     $(document).find('.btn_cancel').hide();
@@ -345,6 +354,4 @@ $(document).ready(function ($) {
 
     });
     //--->save whole row entery > end
-
-
 });
