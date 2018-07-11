@@ -1,34 +1,23 @@
-.w-container {
-  margin: 0 auto;
-  padding: 8px 10px 0;
-  width: 1080px;
-  text-align: left;
-  zoom: 1;
+body,
+html {
+  height: 100%;
 }
 
-.column-left {
-  float: left;
-  width: 740px;
+#wrap {
+  min-width: 1100px;
+  background: #f2f4f7;
 }
 
-.column-right {
-  position: relative;
-  float: right;
-  width: 300px;
-}
-
-.w-panel {
+/* common */
+.box_with_border {
   padding: 10px;
   background: #fff;
   border: 1px solid #dee3eb;
   opacity: 1;
+  height: 100%;
 }
 
-.bodychart-panel {
-  text-align: center;
-}
-
-.section-header-div {
+.section-header {
   position: relative;
   height: 44px;
   border-bottom: 1px solid #ebeef3;
@@ -36,11 +25,106 @@
 }
 
 .section-header-text {
+  float: left;
   font-size: 1.5rem;
+}
+
+/* header */
+#header {
+  height: 140px;
+  border-bottom: 1px solid #d1d8e4;
+  background: #fff;
+}
+
+.inner_header {
+  position: relative;
+  margin: 0 auto;
+  width: 1500px;
+  height: 100%;
+}
+
+.logo {
+  position: absolute;
+  top: 20%;
+}
+
+.logo img {
+  width: 100%;
+}
+
+/* end header */
+
+/* main */
+#container {
+  margin: 0 auto;
+  padding: 8px 0;
+  width: 1420px;
+  overflow: auto;
+}
+
+.snb_list {
+  float: left;
+  width: 332px;
+}
+
+.content {
+  position: relative;
+  float: right;
+  width: 1080px;
+}
+
+/* layout */
+.layout-content-top {
+
+}
+
+.layout-content-second {
+  position: relative;
+  height: 700px;
+  width: 100%;
+  padding-top: 8px;
+}
+
+.layout-content-third {
+  clear: both;
+  height: 350px;
+  width: 100%;
+  padding-top: 8px;
+}
+/* snb */
+/* patient search */
+.section-search {
+  padding-top: 8px;
+}
+
+/* basic information */
+.form-row.basic-information-row {
+  margin: 0px;
+  display: block;
+  overflow: auto;
+}
+
+.form-group.basic-information-group {
+  float: left;
+  margin-bottom: 0px;
+  margin: 2px 8px;
+}
+
+.form-group.basic-information-btn-group {
+  float: right;
+  margin-bottom: 0;
+}
+
+/* bodychart */
+.layout-content-bodychart {
+  float: left;
+  width: 740px;
+  height: 100%;
 }
 
 .bodychart-form-field {
   position: relative;
+  text-align: center;
 }
 
 .bodychart-label {
@@ -63,6 +147,115 @@
   height: 30px;
 }
 
-.prescription-panel {
-  height: 600px;
+/* eav */
+.layout-content-eav {
+  position: relative;
+  float: right;
+  width: 332px;
+  height: 100%;
+}
+
+.btn-eav-upload {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 12px;
+}
+
+/* tongue */
+.layout-content-tongue {
+  position: relative;
+  float: left;
+  width: 740px;
+  height: 100%;
+}
+p.tongue-form-category {
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+}
+.tongue-title-section-radio {
+  float: right;
+  margin-top: 8px;
+}
+.tongue-panel {
+  padding-top: 8px;
+  padding-left: 8px;
+}
+.tongue-detail-form {
+  padding-top: 4px;
+  padding-left: 16px;
+  padding-bottom: 4px;
+}
+.form-check-label {
+  padding-right: 5px;
+}
+
+/* comment */
+.layout-content-comment {
+  position: relative;
+  float: right;
+  width: 332px;
+  height: 100%;
+}
+
+/* prescription */
+.layout-content-prescription {
+  width: 1080px;
+  padding-top: 8px;
+}
+
+.section-prescription-table {
+  padding-top: 8px;
+}
+
+/* footer */
+#footer {
+  margin-top: 16px;
+  border-top: 1px solid #e3e7ee;
+  background: #fff;
+  text-align: left;
+}
+
+.company-info {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 24px;
+  width: 1080px;
+  height: 132px;
+  zoom: 1;
+}
+
+.border-left {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+p.footer {
+  color: #888;
+  font-size: 12px;
+}
+
+.basic-information-input {
+  text-align: center;
+  font-weight: bold;
+  color: #00968D;
+  font-size: 18px;
+}
+
+.btn-custom {
+  margin-top: 32px;
+  padding: 8px;
+  margin-bottom: 0px;
+}
+
+.form-group.eav-form-group {
+  margin-top: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.comment-panel {
+  height: 285px;
+  padding: 8px 2px;
 }
