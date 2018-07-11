@@ -6,6 +6,34 @@ function init_datatimepicker() {
 }
 
 function init_vaild_check() {
+    $("#input-chart-id").on("change paste keyup", function() {
+        var chart_id = $(this).val()
+        if(chart_id.length == 8) {
+            $.ajax({
+                url: '/patient/'+chart_id,
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    var recieved_json_data = response
+                    if($.isEmptyObject(recieved_json_data)) {
+                        $('#input-age').val(recieved_json_data.age)
+                        $('#input-height').val(recieved_json_data.height)
+                        $('#input-weight').val(recieved_json_data.weight)
+                        $('#input-blood-high').val(recieved_json_data.blood_high)
+                        $('#input-blood-low').val(recieved_json_data.blood_low)
+                    } else {
+                        $('#input-gender').val(recieved_json_data.gender)
+                        $('#input-age').val(recieved_json_data.age)
+                        $('#input-height').val(recieved_json_data.height)
+                        $('#input-weight').val(recieved_json_data.weight)
+                        $('#input-blood-high').val(recieved_json_data.blood_high)
+                        $('#input-blood-low').val(recieved_json_data.blood_low)
+                    }
+                }
+            });
+        }
+    });
+
     $("#input-age").on("change paste keyup", function() {
         var age = $(this).val()
         if (age > 120) {
@@ -16,9 +44,69 @@ function init_vaild_check() {
      });
 }
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function init_jq_post() {
+    $("#patient-data-submit").submit(function(event) {
+        event.preventDefault();
+        $('#submit-btn').children(".fa").addClass('fa fa-refresh fa-spin')
+
+        var $form = $(this);
+        url = $form.attr("action");
+        
+        var chart_id = $form.find("input[name='input-chart-id']").val();
+        var gender = $form.find("select[name='input-gender']").val();
+        var age = $form.find("input[name='input-age']").val();
+        var height = $form.find("input[name='input-height']").val();
+        var weight = $form.find("input[name='input-weight']").val();
+        var blood_high = $form.find("input[name='input-blood-high']").val();
+        var blood_low = $form.find("input[name='input-blood-low']").val();
+    
+        var payload = JSON.stringify({
+            chart_id: chart_id,
+            gender: gender,
+            age: age,
+            height: height,
+            weight: weight,
+            blood_high: blood_high,
+            blood_low: blood_low
+        });
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            headers: {'X-CSRFToken': csrftoken},
+            data: payload,
+            dataType: "json",
+            success: function(response){
+                console.log("success")
+                // $('#submit-btn').children(".fa").removeClass('fa fa-refresh fa-spin')
+            }
+        }).fail(function(error){
+            console.log("fail");
+        });
+    });
+}
+
 $(document).ready(function ($) {
     init_datatimepicker();
     init_vaild_check();
+    init_jq_post();
 
     var ajax_data = [{
             pName: "첩약1",

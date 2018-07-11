@@ -16,780 +16,793 @@
 </div>
 
 <div class="content">
-    <div class="layout-content-top">
-        <div class="box_with_border">
-            <div class="form-row basic-information-row">
-                <div class="form-group basic-information-group">
-                    <label for="input-gender">성별</label>
-                    <select id="input-gender" class="form-control">
-                        <option selected>여</option>
-                        <option>남</option>
-                    </select>
-                </div>
-                <div class="form-group basic-information-group">
-                    <label for="input-age">나이</label>
-                    <input type="text" class="form-control basic-information-input" id="input-age" style="width: 70px;" maxlength="3">
-                    <div class="invalid-feedback">
+    <form id="patient-data-submit" action="{% url 'data_collecting:submit' %}" method="post">
+        {% csrf_token %}
+        <div class="layout-content-top">
+            <div class="box_with_border">
+                <div class="form-row basic-information-row">
+                    <div class="form-group basic-information-group">
+                        <label for="input-chart-id">차트번호</label>
+                        <input id="input-chart-id" name="input-chart-id" type="text" class="form-control basic-information-input" style="width: 120px;" maxlength="8">
+                    </div>
+                    <div class="form-group basic-information-group">
+                        <label for="input-gender">성별</label>
+                        <select id="input-gender" name="input-gender" class="form-control">
+                            <option value="W" selected>여</option>
+                            <option value="M">남</option>
+                        </select>
+                    </div>
+                    <div class="form-group basic-information-group">
+                        <label for="input-age">나이</label>
+                        <input id="input-age" name="input-age" type="text" class="form-control basic-information-input" style="width: 70px;" maxlength="3">
+                        <div class="invalid-feedback">
                             Please provide a valid city.
-                          </div>
-                </div>
-                <div class="form-group basic-information-group">
-                    <label for="input-height">키</label>
-                    <input type="text" class="form-control basic-information-input" id="input-height" style="width: 70px;" maxlength="3">
-                </div>
-                <div class="form-group basic-information-group">
-                    <label for="input-weight">몸무게</label>
-                    <input type="text" class="form-control basic-information-input" id="input-weight" style="width: 70px;" maxlength="3">
-                </div>
-                <div class="form-group basic-information-group">
-                    <label for="input-weight">혈압</label>
-                </div>
-                <div class="form-group basic-information-group">
-                    <label for="input-blood-high">고</label>
-                    <input type="text" class="form-control basic-information-input" id="input-blood-high" style="width: 70px;" maxlength="3">
-                </div>
-                <div class="form-group basic-information-group">
-                    <label for="input-blood-row">저</label>
-                    <input type="text" class="form-control basic-information-input" id="input-blood-row" style="width: 70px;" maxlength="3">
-                </div>
+                        </div>
+                    </div>
+                    <div class="form-group basic-information-group">
+                        <label for="input-height">키</label>
+                        <input id="input-height" name="input-height" type="text" class="form-control basic-information-input" style="width: 70px;"
+                            maxlength="3">
+                    </div>
+                    <div class="form-group basic-information-group">
+                        <label for="input-weight">몸무게</label>
+                        <input id="input-weight" name="input-weight" type="text" class="form-control basic-information-input" style="width: 70px;"
+                            maxlength="3">
+                    </div>
+                    <div class="form-group basic-information-group">
+                        <label for="input-blood-high">혈압</label>
+                    </div>
+                    <div class="form-group basic-information-group">
+                        <label for="input-blood-high">고</label>
+                        <input type="text" class="form-control basic-information-input" id="input-blood-high" name="input-blood-high" style="width: 70px;"
+                            maxlength="3">
+                    </div>
+                    <div class="form-group basic-information-group">
+                        <label for="input-blood-low">저</label>
+                        <input type="text" class="form-control basic-information-input" id="input-blood-low" name="input-blood-low" style="width: 70px;"
+                            maxlength="3">
+                    </div>
 
-                <div class="form-group basic-information-btn-group">
-                    <button class="btn btn-outline-success btn-custom" type="submit">임시저장</button>
-                    <button class="btn btn-success btn-custom" type="submit">최종저장</button>
+                    <div class="form-group basic-information-btn-group">
+                        <button class="btn btn-outline-success btn-custom" type="submit">임시저장</button>
+                        <button id="submit-btn" class="btn btn-success btn-custom" type="submit">
+                            <i class="fa"/>최종저장
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="layout-content-second">
-        <div class="layout-content-bodychart">
+        <div class="layout-content-second">
+            <div class="layout-content-bodychart">
+                <div class="box_with_border">
+                    <div class="section-header">
+                        <span class="section-header-text">Body Chart</span>
+                    </div>
+                    <div class="bodychart-form-field">
+                        <img src="/static/images/bodychart.png">
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 70px;">
+                            <label class="bodychart-label" for="두통">두통</label>
+                            <input name="두통" class="bodychart-input-text" type="text" maxlength="1">
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 150px;">
+                            <label class="bodychart-label" for="현훈">현훈</label>
+                            <input name="현훈" type="text" class="bodychart-input-text" maxlength="1">
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 230px;">
+                            <label class="bodychart-label" for="두불청">두불청</label>
+                            <input name="두불청" type="checkbox">
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 310px;">
+                            <label class="bodychart-label" for="두중감">두중감</label>
+                            <div class="bodychart-checkbox">
+                                <input name="두중감" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 450px;">
+                            <label class="bodychart-label" for="안면">안면</label>
+                            <div class="bodychart-checkbox">
+                                <input name="안면/불면" type="radio" value="안면">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 40px; left: 450px;">
+                            <label class="bodychart-label" for="불면">불면</label>
+                            <div class="bodychart-checkbox">
+                                <input name="안면/불면" type="radio" value="불면">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 550px;">
+                            <label class="bodychart-label" for="천면">천면</label>
+                            <div class="bodychart-checkbox">
+                                <input name="천면" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 630px;">
+                            <label class="bodychart-label" for="다몽">다몽</label>
+                            <div class="bodychart-checkbox">
+                                <input name="다몽" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 50px; left: 290px;">
+                            <label class="bodychart-label" for="안구건조">안구건조</label>
+                            <div class="">
+                                <input name="안구건조" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 50px; left: 608px;">
+                            <label class="bodychart-label" for="피로감">피로감</label>
+                            <div class="non-padding">
+                                <input name="피로감" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 70px;">
+                            <label class="bodychart-label" for="구취">구취</label>
+                            <div class="">
+                                <input name="구취" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 242px;">
+                            <label class="bodychart-label" for="두불청">구건</label>
+                            <div class="bodychart-checkbox">
+                                <input name="구건" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 322px;">
+                            <label class="bodychart-label" for="두중감">구고</label>
+                            <div class="bodychart-checkbox">
+                                <input name="구고" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 402px;">
+                            <label class="bodychart-label" for="구내염">구내염</label>
+                            <div class="bodychart-checkbox">
+                                <input name="구내염" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 608px;">
+                            <label class="bodychart-label" for="건망증">건망증</label>
+                            <div class="non-padding">
+                                <input name="건망증" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 30px;">
+                            <label class="bodychart-label" for="급">급</label>
+                            <div class="">
+                                <input name="급" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 30px;">
+                            <label class="bodychart-label" for="폭">폭</label>
+                            <div class="">
+                                <input name="폭" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 30px;">
+                            <label class="bodychart-label" for="과">과</label>
+                            <div class="">
+                                <input name="과" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 140px;">
+                            <label class="bodychart-label" for="해수">해수</label>
+                            <div class="bodychart-checkbox">
+                                <input name="해수" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 220px;">
+                            <label class="bodychart-label" for="객담">객담</label>
+                            <div class="bodychart-checkbox">
+                                <input name="객담" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 120px;">
+                            <label class="bodychart-label" for="목이물감">목이물감</label>
+                            <div class="bodychart-checkbox">
+                                <input name="목이물감" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 220px;">
+                            <label class="bodychart-label" for="인통">인통</label>
+                            <div class="bodychart-checkbox">
+                                <input name="인통" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 310px;">
+                            <label class="bodychart-label" for="不">不</label>
+                            <div class="non-padding">
+                                <input name="不" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 390px;">
+                            <label class="bodychart-label" for="면">면</label>
+                            <div class="non-padding">
+                                <input name="면" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 470px;">
+                            <label class="bodychart-label" for="육">육</label>
+                            <div class="non-padding">
+                                <input name="육" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 560px;">
+                            <label class="bodychart-label" for="인">인</label>
+                            <div class="non-padding">
+                                <input name="인" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 640px;">
+                            <label class="bodychart-label" for="견통">견통</label>
+                            <div class="">
+                                <input name="견통" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 310px;">
+                            <label class="bodychart-label" for="소화불량">소화불량</label>
+                            <div class="">
+                                <input name="소화불량" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 410px;">
+                            <label class="bodychart-label" for="명치답답">명치답답</label>
+                            <div class="">
+                                <input name="명치답답" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 510px;">
+                            <label class="bodychart-label" for="체함">체함</label>
+                            <div class="">
+                                <input name="체함" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 310px;">
+                            <label class="bodychart-label" for="심계">심계</label>
+                            <div class="">
+                                <input name="심계" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 390px;">
+                            <label class="bodychart-label" for="불안">불안</label>
+                            <div class="">
+                                <input name="불안" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 310px;">
+                            <label class="bodychart-label" for="흉민">흉민</label>
+                            <div class="">
+                                <input name="흉민" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 390px;">
+                            <label class="bodychart-label" for="흉통">흉통</label>
+                            <div class="">
+                                <input name="흉통" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 298px;">
+                            <label class="bodychart-label" for="상열감">상열감</label>
+                            <div class="non-padding">
+                                <input name="상열감" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 390px;">
+                            <label class="bodychart-label" for="숨참">숨참</label>
+                            <div class="">
+                                <input name="숨참" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 30px;">
+                            <label class="bodychart-label" for="더부룩가스">더부룩</label>
+                            <div class="non-padding">
+                                <input name="더부룩가스" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 30px;">
+                            <label class="bodychart-label" for="트림">트림</label>
+                            <div class="non-padding">
+                                <input name="트림" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 122px;">
+                            <label class="bodychart-label" for="구토">구토</label>
+                            <div class="bodychart-checkbox">
+                                <input name="구토" type="checkbox" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 30px;">
+                            <label class="bodychart-label" for="속쓰림">속쓰림</label>
+                            <div class="non-padding">
+                                <input name="속쓰림" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 110px;">
+                            <label class="bodychart-label" for="하복냉">하복냉</label>
+                            <div class="non-padding bodychart-checkbox">
+                                <input name="하복냉" type="checkbox" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 30px;">
+                            <label class="bodychart-label" for="역류">역류</label>
+                            <div class="">
+                                <input name="역류" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 410px; left: 30px;">
+                            <label class="bodychart-label" for="오심">오심</label>
+                            <div class="">
+                                <input name="오심" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 450px; left: 30px;">
+                            <label class="bodychart-label" for="복통">복통</label>
+                            <div class="">
+                                <input name="복통" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 140px;">
+                            <label class="bodychart-label" for="복진-상">복진-상</label>
+                            <div class="">
+                                <input name="복진-상" type="text" class="bodychart-input-text" style="width: 70px;" maxlength="5">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 140px;">
+                            <label class="bodychart-label" for="복진-하">복진-하</label>
+                            <div class="">
+                                <input name="복진-하" type="text" class="bodychart-input-text" style="width: 70px;" maxlength="5">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 220px;">
+                            <label class="bodychart-label" for="양호">양호</label>
+                            <div class="bodychart-checkbox">
+                                <input name="양호" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 300px;">
+                            <label class="bodychart-label" for="배뇨지연">배뇨지연</label>
+                            <div class="bodychart-checkbox">
+                                <input name="배뇨지연" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 220px;">
+                            <label class="bodychart-label" for="빈삭">빈삭</label>
+                            <div class="bodychart-checkbox">
+                                <input name="빈삭" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 300px;">
+                            <label class="bodychart-label" for="잔뇨감">잔뇨감</label>
+                            <div class="non-padding">
+                                <input name="잔뇨감" type="text" class="bodychart-input-text" maxlength="1" placeholder="회">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 410px; left: 220px;">
+                            <label class="bodychart-label" for="불규칙">불규칙</label>
+                            <div class="non-padding bodychart-checkbox">
+                                <input name="불규칙" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 410px; left: 312px;">
+                            <label class="bodychart-label" for="폐경">폐경</label>
+                            <div class="bodychart-checkbox">
+                                <input name="폐경" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 450px; left: 220px;">
+                            <label class="bodychart-label" for="생리통">생리통</label>
+                            <div class="non-padding bodychart-checkbox">
+                                <input name="생리통" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 450px; left: 300px;">
+                            <label class="bodychart-label" for="냉대하">냉대하</label>
+                            <div class="non-padding bodychart-checkbox">
+                                <input name="냉대하" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 460px;">
+                            <label class="bodychart-label" for="대변">대변</label>
+                            <div class="non-padding">
+                                <input name="대변" type="text" class="bodychart-input-text" maxlength="1">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 460px;">
+                            <label class="bodychart-label" for="경변">경변</label>
+                            <div class="non-padding bodychart-checkbox">
+                                <input name="경변" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 540px;">
+                            <label class="bodychart-label" for="연변">연변</label>
+                            <div class="non-padding bodychart-checkbox">
+                                <input name="연변" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 620px;">
+                            <label class="bodychart-label" for="설사">설사</label>
+                            <div class="non-padding bodychart-checkbox">
+                                <input name="설사" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="position: absolute; top: 530px; left: 40px; width: 90px;">
+                            <label class="bodychart-label" for="냉감">수/족 냉감</label>
+                            <div class="bodychart-checkbox">
+                                <input name="열감/냉감" type="radio">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline" style="position: absolute; top: 570px; left: 40px; width: 90px;">
+                            <label class="bodychart-label" for="열감">수/족 열감</label>
+                            <div class="bodychart-checkbox">
+                                <input name="열감/냉감" type="radio">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout-content-eav">
+                <div class="box_with_border">
+                    <div class="section-header">
+                        <span class="section-header-text">EAV</span>
+                    </div>
+                    <div class="form-group eav-form-group">
+                        <label for="input-eav-1">1순위</label>
+                        <select id="input-eav-1" class="form-control">
+                            {% include "data_collecting/eav_select_options.html" %}
+                        </select>
+                    </div>
+
+                    <div class="form-group eav-form-group">
+                        <label for="input-eav-2">2순위</label>
+                        <select id="input-eav-2" class="form-control">
+                            {% include "data_collecting/eav_select_options.html" %}
+                        </select>
+                    </div>
+
+                    <div class="form-group eav-form-group">
+                        <label for="input-eav-3">3순위</label>
+                        <select id="input-eav-3" class="form-control">
+                            {% include "data_collecting/eav_select_options.html" %}
+                        </select>
+                    </div>
+
+                    <div class="form-group eav-form-group">
+                        <label for="input-eav-4">4순위</label>
+                        <select id="input-eav-4" class="form-control">
+                            {% include "data_collecting/eav_select_options.html" %}
+                        </select>
+                    </div>
+
+                    <div class="form-group eav-form-group">
+                        <label for="input-eav-5">5순위</label>
+                        <select id="input-eav-5" class="form-control">
+                            {% include "data_collecting/eav_select_options.html" %}
+                        </select>
+                    </div>
+
+                    <div class="form-group eav-form-group">
+                        <label for="input-eav-6">6순위</label>
+                        <select id="input-eav-6" class="form-control">
+                            {% include "data_collecting/eav_select_options.html" %}
+                        </select>
+                    </div>
+
+                    <div class="btn-eav-upload">
+                        <button class="btn btn-info" type="submit" style="width: 100%">EAV 파일 업로드</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout-content-third">
+            <div class="layout-content-tongue">
+                <div class="box_with_border">
+                    <div class="section-header">
+                        <span class="section-header-text">설진</span>
+                        <div class="tongue-title-section-radio">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="경면설">경면설</label>
+                                <input class="form-check-input" type="radio" name="설진" value="option1" id="경면설" checked>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="지도설">지도설</label>
+                                <input class="form-check-input" type="radio" name="설진" value="option1" id="지도설" checked>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tongue-panel">
+                        <p class="h5">설체</p>
+                        <div class="tongue-detail-form">
+                            <div class="form-check-inline">
+                                <p class="tongue-form-category">색</p>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="담백">담백</label>
+                                <input class="form-check-input" type="checkbox" value="담백" id="담백">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="담홍">담홍</label>
+                                <input class="form-check-input" type="checkbox" value="담홍" id="담홍">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="홍">홍</label>
+                                <input class="form-check-input" type="checkbox" value="홍" id="홍">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="심홍">심홍</label>
+                                <input class="form-check-input" type="checkbox" value="심홍" id="심홍">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="강">강</label>
+                                <input class="form-check-input" type="checkbox" value="강" id="강">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="자">자</label>
+                                <input class="form-check-input" type="checkbox" value="자" id="자">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="청">청</label>
+                                <input class="form-check-input" type="checkbox" value="청" id="청">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="담">담</label>
+                                <input class="form-check-input" type="checkbox" value="담" id="담">
+                            </div>
+                        </div>
+
+                        <div class="tongue-detail-form">
+                            <div class="form-check-inline">
+                                <p class="tongue-form-category">두께</p>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="반대">반대(두껍다)</label>
+                                <input class="form-check-input" name="두께" type="radio" value="반대" id="반대">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="수박">수박(얇다)</label>
+                                <input class="form-check-input" name="두께" type="radio" value="수박" id="수박">
+                            </div>
+                        </div>
+
+                        <div class="tongue-detail-form">
+                            <div class="form-check-inline">
+                                <p class="tongue-form-category">형태</p>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="열문">열문</label>
+                                <input class="form-check-input" type="checkbox" value="열문" id="열문">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="치흔">치흔</label>
+                                <input class="form-check-input" type="checkbox" value="치흔" id="치흔">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="망자">망자</label>
+                                <input class="form-check-input" type="checkbox" value="망자" id="망자">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="홍점">홍점</label>
+                                <input class="form-check-input" type="checkbox" value="홍점" id="홍점">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="어점">어점</label>
+                                <input class="form-check-input" type="checkbox" value="어점" id="어점">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="어반">어반</label>
+                                <input class="form-check-input" type="checkbox" value="어반" id="어반">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="위축">위축</label>
+                                <input class="form-check-input" type="checkbox" value="위축" id="위축">
+                            </div>
+                        </div>
+
+                        <p class="h5">설태</p>
+                        <div class="tongue-detail-form">
+                            <div class="form-check-inline">
+                                <p class="tongue-form-category">색</p>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="담백">담백</label>
+                                <input class="form-check-input" type="checkbox" value="담백" id="담백">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="담홍">담홍</label>
+                                <input class="form-check-input" type="checkbox" value="담홍" id="담홍">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="홍">홍</label>
+                                <input class="form-check-input" type="checkbox" value="홍" id="홍">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="심홍">심홍</label>
+                                <input class="form-check-input" type="checkbox" value="심홍" id="심홍">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="강">강</label>
+                                <input class="form-check-input" type="checkbox" value="강" id="강">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="자">자</label>
+                                <input class="form-check-input" type="checkbox" value="자" id="자">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="청">청</label>
+                                <input class="form-check-input" type="checkbox" value="청" id="청">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="담">담</label>
+                                <input class="form-check-input" type="checkbox" value="담" id="담">
+                            </div>
+                        </div>
+
+                        <div class="tongue-detail-form">
+                            <div class="form-check-inline">
+                                <p class="tongue-form-category">두께</p>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="반대">반대(두껍다)</label>
+                                <input class="form-check-input" name="두께" type="radio" value="반대" id="반대">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="수박">수박(얇다)</label>
+                                <input class="form-check-input" name="두께" type="radio" value="수박" id="수박">
+                            </div>
+                        </div>
+
+                        <div class="tongue-detail-form">
+                            <div class="form-check-inline">
+                                <p class="tongue-form-category">형태</p>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="열문">열문</label>
+                                <input class="form-check-input" type="checkbox" value="열문" id="열문">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="치흔">치흔</label>
+                                <input class="form-check-input" type="checkbox" value="치흔" id="치흔">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="망자">망자</label>
+                                <input class="form-check-input" type="checkbox" value="망자" id="망자">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="홍점">홍점</label>
+                                <input class="form-check-input" type="checkbox" value="홍점" id="홍점">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="어점">어점</label>
+                                <input class="form-check-input" type="checkbox" value="어점" id="어점">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="어반">어반</label>
+                                <input class="form-check-input" type="checkbox" value="어반" id="어반">
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="위축">위축</label>
+                                <input class="form-check-input" type="checkbox" value="위축" id="위축">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout-content-comment">
+                <div class="box_with_border">
+                    <div class="section-header">
+                        <span class="section-header-text">코멘트</span>
+                    </div>
+                    <div class="comment-panel">
+                        <textarea class="form-control" rows="10" style="resize: none;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout-content-prescription">
             <div class="box_with_border">
                 <div class="section-header">
-                    <span class="section-header-text">Body Chart</span>
+                    <span class="section-header-text">처방 입력</span>
                 </div>
-                <div class="bodychart-form-field">
-                    <img src="/static/images/bodychart.png">
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 70px;">
-                        <label class="bodychart-label" for="두통">두통</label>
-                        <input name="두통" class="bodychart-input-text" type="text" maxlength="1">
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 150px;">
-                        <label class="bodychart-label" for="현훈">현훈</label>
-                        <input name="현훈" type="text" class="bodychart-input-text" maxlength="1">
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 230px;">
-                        <label class="bodychart-label" for="두불청">두불청</label>
-                        <input name="두불청" type="checkbox">
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 310px;">
-                        <label class="bodychart-label" for="두중감">두중감</label>
-                        <div class="bodychart-checkbox">
-                            <input name="두중감" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 450px;">
-                        <label class="bodychart-label" for="안면">안면</label>
-                        <div class="bodychart-checkbox">
-                            <input name="안면/불면" type="radio" value="안면">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 40px; left: 450px;">
-                        <label class="bodychart-label" for="불면">불면</label>
-                        <div class="bodychart-checkbox">
-                            <input name="안면/불면" type="radio" value="불면">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 550px;">
-                        <label class="bodychart-label" for="천면">천면</label>
-                        <div class="bodychart-checkbox">
-                            <input name="천면" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 630px;">
-                        <label class="bodychart-label" for="다몽">다몽</label>
-                        <div class="bodychart-checkbox">
-                            <input name="다몽" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 50px; left: 290px;">
-                        <label class="bodychart-label" for="안구건조">안구건조</label>
-                        <div class="">
-                            <input name="안구건조" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 50px; left: 608px;">
-                        <label class="bodychart-label" for="피로감">피로감</label>
-                        <div class="non-padding">
-                            <input name="피로감" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 70px;">
-                        <label class="bodychart-label" for="구취">구취</label>
-                        <div class="">
-                            <input name="구취" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 242px;">
-                        <label class="bodychart-label" for="두불청">구건</label>
-                        <div class="bodychart-checkbox">
-                            <input name="구건" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 322px;">
-                        <label class="bodychart-label" for="두중감">구고</label>
-                        <div class="bodychart-checkbox">
-                            <input name="구고" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 402px;">
-                        <label class="bodychart-label" for="구내염">구내염</label>
-                        <div class="bodychart-checkbox">
-                            <input name="구내염" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 608px;">
-                        <label class="bodychart-label" for="건망증">건망증</label>
-                        <div class="non-padding">
-                            <input name="건망증" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 30px;">
-                        <label class="bodychart-label" for="급">급</label>
-                        <div class="">
-                            <input name="급" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 30px;">
-                        <label class="bodychart-label" for="폭">폭</label>
-                        <div class="">
-                            <input name="폭" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 30px;">
-                        <label class="bodychart-label" for="과">과</label>
-                        <div class="">
-                            <input name="과" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 140px;">
-                        <label class="bodychart-label" for="해수">해수</label>
-                        <div class="bodychart-checkbox">
-                            <input name="해수" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 220px;">
-                        <label class="bodychart-label" for="객담">객담</label>
-                        <div class="bodychart-checkbox">
-                            <input name="객담" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 120px;">
-                        <label class="bodychart-label" for="목이물감">목이물감</label>
-                        <div class="bodychart-checkbox">
-                            <input name="목이물감" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 220px;">
-                        <label class="bodychart-label" for="인통">인통</label>
-                        <div class="bodychart-checkbox">
-                            <input name="인통" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 310px;">
-                        <label class="bodychart-label" for="不">不</label>
-                        <div class="non-padding">
-                            <input name="不" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 390px;">
-                        <label class="bodychart-label" for="면">면</label>
-                        <div class="non-padding">
-                            <input name="면" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 470px;">
-                        <label class="bodychart-label" for="육">육</label>
-                        <div class="non-padding">
-                            <input name="육" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 560px;">
-                        <label class="bodychart-label" for="인">인</label>
-                        <div class="non-padding">
-                            <input name="인" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 640px;">
-                        <label class="bodychart-label" for="견통">견통</label>
-                        <div class="">
-                            <input name="견통" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 310px;">
-                        <label class="bodychart-label" for="소화불량">소화불량</label>
-                        <div class="">
-                            <input name="소화불량" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 410px;">
-                        <label class="bodychart-label" for="명치답답">명치답답</label>
-                        <div class="">
-                            <input name="명치답답" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 510px;">
-                        <label class="bodychart-label" for="체함">체함</label>
-                        <div class="">
-                            <input name="체함" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 310px;">
-                        <label class="bodychart-label" for="심계">심계</label>
-                        <div class="">
-                            <input name="심계" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 390px;">
-                        <label class="bodychart-label" for="불안">불안</label>
-                        <div class="">
-                            <input name="불안" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 310px;">
-                        <label class="bodychart-label" for="흉민">흉민</label>
-                        <div class="">
-                            <input name="흉민" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 390px;">
-                        <label class="bodychart-label" for="흉통">흉통</label>
-                        <div class="">
-                            <input name="흉통" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 298px;">
-                        <label class="bodychart-label" for="상열감">상열감</label>
-                        <div class="non-padding">
-                            <input name="상열감" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 390px;">
-                        <label class="bodychart-label" for="숨참">숨참</label>
-                        <div class="">
-                            <input name="숨참" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 30px;">
-                        <label class="bodychart-label" for="더부룩가스">더부룩</label>
-                        <div class="non-padding">
-                            <input name="더부룩가스" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 30px;">
-                        <label class="bodychart-label" for="트림">트림</label>
-                        <div class="non-padding">
-                            <input name="트림" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 122px;">
-                        <label class="bodychart-label" for="구토">구토</label>
-                        <div class="bodychart-checkbox">
-                            <input name="구토" type="checkbox" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 30px;">
-                        <label class="bodychart-label" for="속쓰림">속쓰림</label>
-                        <div class="non-padding">
-                            <input name="속쓰림" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 110px;">
-                        <label class="bodychart-label" for="하복냉">하복냉</label>
-                        <div class="non-padding bodychart-checkbox">
-                            <input name="하복냉" type="checkbox" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 30px;">
-                        <label class="bodychart-label" for="역류">역류</label>
-                        <div class="">
-                            <input name="역류" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 410px; left: 30px;">
-                        <label class="bodychart-label" for="오심">오심</label>
-                        <div class="">
-                            <input name="오심" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 450px; left: 30px;">
-                        <label class="bodychart-label" for="복통">복통</label>
-                        <div class="">
-                            <input name="복통" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 140px;">
-                        <label class="bodychart-label" for="복진-상">복진-상</label>
-                        <div class="">
-                            <input name="복진-상" type="text" class="bodychart-input-text" style="width: 70px;" maxlength="5">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 140px;">
-                        <label class="bodychart-label" for="복진-하">복진-하</label>
-                        <div class="">
-                            <input name="복진-하" type="text" class="bodychart-input-text" style="width: 70px;" maxlength="5">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 220px;">
-                        <label class="bodychart-label" for="양호">양호</label>
-                        <div class="bodychart-checkbox">
-                            <input name="양호" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 300px;">
-                        <label class="bodychart-label" for="배뇨지연">배뇨지연</label>
-                        <div class="bodychart-checkbox">
-                            <input name="배뇨지연" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 220px;">
-                        <label class="bodychart-label" for="빈삭">빈삭</label>
-                        <div class="bodychart-checkbox">
-                            <input name="빈삭" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 300px;">
-                        <label class="bodychart-label" for="잔뇨감">잔뇨감</label>
-                        <div class="non-padding">
-                            <input name="잔뇨감" type="text" class="bodychart-input-text" maxlength="1" placeholder="회">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 410px; left: 220px;">
-                        <label class="bodychart-label" for="불규칙">불규칙</label>
-                        <div class="non-padding bodychart-checkbox">
-                            <input name="불규칙" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 410px; left: 312px;">
-                        <label class="bodychart-label" for="폐경">폐경</label>
-                        <div class="bodychart-checkbox">
-                            <input name="폐경" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 450px; left: 220px;">
-                        <label class="bodychart-label" for="생리통">생리통</label>
-                        <div class="non-padding bodychart-checkbox">
-                            <input name="생리통" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 450px; left: 300px;">
-                        <label class="bodychart-label" for="냉대하">냉대하</label>
-                        <div class="non-padding bodychart-checkbox">
-                            <input name="냉대하" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 460px;">
-                        <label class="bodychart-label" for="대변">대변</label>
-                        <div class="non-padding">
-                            <input name="대변" type="text" class="bodychart-input-text" maxlength="1">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 460px;">
-                        <label class="bodychart-label" for="경변">경변</label>
-                        <div class="non-padding bodychart-checkbox">
-                            <input name="경변" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 540px;">
-                        <label class="bodychart-label" for="연변">연변</label>
-                        <div class="non-padding bodychart-checkbox">
-                            <input name="연변" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 620px;">
-                        <label class="bodychart-label" for="설사">설사</label>
-                        <div class="non-padding bodychart-checkbox">
-                            <input name="설사" type="checkbox">
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" style="position: absolute; top: 530px; left: 40px; width: 90px;">
-                        <label class="bodychart-label" for="냉감">수/족 냉감</label>
-                        <div class="bodychart-checkbox">
-                            <input name="열감/냉감" type="radio">
-                        </div>
-                    </div>
-                    <div class="form-check form-check-inline" style="position: absolute; top: 570px; left: 40px; width: 90px;">
-                        <label class="bodychart-label" for="열감">수/족 열감</label>
-                        <div class="bodychart-checkbox">
-                            <input name="열감/냉감" type="radio">
-                        </div>
-                    </div>
-                </div>
+                <div class="section-prescription-table"></div>
             </div>
         </div>
-
-        <div class="layout-content-eav">
-            <div class="box_with_border">
-                <div class="section-header">
-                    <span class="section-header-text">EAV</span>
-                </div>
-                <div class="form-group eav-form-group">
-                    <label for="input-eav-1">1순위</label>
-                    <select id="input-eav-1" class="form-control">
-                        {% include "data_collecting/eav_select_options.html" %}
-                    </select>
-                </div>
-
-                <div class="form-group eav-form-group">
-                    <label for="input-eav-2">2순위</label>
-                    <select id="input-eav-2" class="form-control">
-                        {% include "data_collecting/eav_select_options.html" %}
-                    </select>
-                </div>
-
-                <div class="form-group eav-form-group">
-                    <label for="input-eav-3">3순위</label>
-                    <select id="input-eav-3" class="form-control">
-                        {% include "data_collecting/eav_select_options.html" %}
-                    </select>
-                </div>
-
-                <div class="form-group eav-form-group">
-                    <label for="input-eav-4">4순위</label>
-                    <select id="input-eav-4" class="form-control">
-                        {% include "data_collecting/eav_select_options.html" %}
-                    </select>
-                </div>
-
-                <div class="form-group eav-form-group">
-                    <label for="input-eav-5">5순위</label>
-                    <select id="input-eav-5" class="form-control">
-                        {% include "data_collecting/eav_select_options.html" %}
-                    </select>
-                </div>
-
-                <div class="form-group eav-form-group">
-                    <label for="input-eav-6">6순위</label>
-                    <select id="input-eav-6" class="form-control">
-                        {% include "data_collecting/eav_select_options.html" %}
-                    </select>
-                </div>
-
-                <div class="btn-eav-upload">
-                    <button class="btn btn-info" type="submit" style="width: 100%">EAV 파일 업로드</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="layout-content-third">
-        <div class="layout-content-tongue">
-            <div class="box_with_border">
-                <div class="section-header">
-                    <span class="section-header-text">설진</span>
-                    <div class="tongue-title-section-radio">
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="경면설">경면설</label>
-                            <input class="form-check-input" type="radio" name="설진" value="option1" id="경면설" checked>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="지도설">지도설</label>
-                            <input class="form-check-input" type="radio" name="설진" value="option1" id="지도설" checked>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tongue-panel">
-                    <p class="h5">설체</p>
-                    <div class="tongue-detail-form">
-                        <div class="form-check-inline">
-                            <p class="tongue-form-category">색</p>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="담백">담백</label>
-                            <input class="form-check-input" type="checkbox" value="담백" id="담백">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="담홍">담홍</label>
-                            <input class="form-check-input" type="checkbox" value="담홍" id="담홍">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="홍">홍</label>
-                            <input class="form-check-input" type="checkbox" value="홍" id="홍">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="심홍">심홍</label>
-                            <input class="form-check-input" type="checkbox" value="심홍" id="심홍">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="강">강</label>
-                            <input class="form-check-input" type="checkbox" value="강" id="강">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="자">자</label>
-                            <input class="form-check-input" type="checkbox" value="자" id="자">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="청">청</label>
-                            <input class="form-check-input" type="checkbox" value="청" id="청">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="담">담</label>
-                            <input class="form-check-input" type="checkbox" value="담" id="담">
-                        </div>
-                    </div>
-
-                    <div class="tongue-detail-form">
-                        <div class="form-check-inline">
-                            <p class="tongue-form-category">두께</p>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="반대">반대(두껍다)</label>
-                            <input class="form-check-input" name="두께" type="radio" value="반대" id="반대">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="수박">수박(얇다)</label>
-                            <input class="form-check-input" name="두께" type="radio" value="수박" id="수박">
-                        </div>
-                    </div>
-
-                    <div class="tongue-detail-form">
-                        <div class="form-check-inline">
-                            <p class="tongue-form-category">형태</p>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="열문">열문</label>
-                            <input class="form-check-input" type="checkbox" value="열문" id="열문">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="치흔">치흔</label>
-                            <input class="form-check-input" type="checkbox" value="치흔" id="치흔">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="망자">망자</label>
-                            <input class="form-check-input" type="checkbox" value="망자" id="망자">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="홍점">홍점</label>
-                            <input class="form-check-input" type="checkbox" value="홍점" id="홍점">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="어점">어점</label>
-                            <input class="form-check-input" type="checkbox" value="어점" id="어점">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="어반">어반</label>
-                            <input class="form-check-input" type="checkbox" value="어반" id="어반">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="위축">위축</label>
-                            <input class="form-check-input" type="checkbox" value="위축" id="위축">
-                        </div>
-                    </div>
-
-                    <p class="h5">설태</p>
-                    <div class="tongue-detail-form">
-                        <div class="form-check-inline">
-                            <p class="tongue-form-category">색</p>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="담백">담백</label>
-                            <input class="form-check-input" type="checkbox" value="담백" id="담백">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="담홍">담홍</label>
-                            <input class="form-check-input" type="checkbox" value="담홍" id="담홍">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="홍">홍</label>
-                            <input class="form-check-input" type="checkbox" value="홍" id="홍">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="심홍">심홍</label>
-                            <input class="form-check-input" type="checkbox" value="심홍" id="심홍">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="강">강</label>
-                            <input class="form-check-input" type="checkbox" value="강" id="강">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="자">자</label>
-                            <input class="form-check-input" type="checkbox" value="자" id="자">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="청">청</label>
-                            <input class="form-check-input" type="checkbox" value="청" id="청">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="담">담</label>
-                            <input class="form-check-input" type="checkbox" value="담" id="담">
-                        </div>
-                    </div>
-
-                    <div class="tongue-detail-form">
-                        <div class="form-check-inline">
-                            <p class="tongue-form-category">두께</p>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="반대">반대(두껍다)</label>
-                            <input class="form-check-input" name="두께" type="radio" value="반대" id="반대">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="수박">수박(얇다)</label>
-                            <input class="form-check-input" name="두께" type="radio" value="수박" id="수박">
-                        </div>
-                    </div>
-
-                    <div class="tongue-detail-form">
-                        <div class="form-check-inline">
-                            <p class="tongue-form-category">형태</p>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="열문">열문</label>
-                            <input class="form-check-input" type="checkbox" value="열문" id="열문">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="치흔">치흔</label>
-                            <input class="form-check-input" type="checkbox" value="치흔" id="치흔">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="망자">망자</label>
-                            <input class="form-check-input" type="checkbox" value="망자" id="망자">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="홍점">홍점</label>
-                            <input class="form-check-input" type="checkbox" value="홍점" id="홍점">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="어점">어점</label>
-                            <input class="form-check-input" type="checkbox" value="어점" id="어점">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="어반">어반</label>
-                            <input class="form-check-input" type="checkbox" value="어반" id="어반">
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="위축">위축</label>
-                            <input class="form-check-input" type="checkbox" value="위축" id="위축">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="layout-content-comment">
-            <div class="box_with_border">
-                <div class="section-header">
-                    <span class="section-header-text">코멘트</span>
-                </div>
-                <div class="comment-panel">
-                    <textarea class="form-control" rows="10" style="resize: none;"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="layout-content-prescription">
-        <div class="box_with_border">
-            <div class="section-header">
-                <span class="section-header-text">처방 입력</span>
-            </div>
-            <div class="section-prescription-table"></div>
-        </div>
-    </div>
+    </form>
 </div>
 
 {% endblock content %}
