@@ -6,16 +6,16 @@ function init_datatimepicker() {
 }
 
 function init_vaild_check() {
-    $("#input-chart-id").on("change paste keyup", function() {
-        var set_chart = function(entry) {
-            for(const [key, value] of Object.entries(entry)) {
-                var target = $('[name='+ key +']')
-                if(target[0].type == 'text') {
+    $("#input-chart-id").on("change paste keyup", function () {
+        var set_chart = function (entry) {
+            for (const [key, value] of Object.entries(entry)) {
+                var target = $('[name=' + key + ']')
+                if (target[0].type == 'text') {
                     target[0].value = value;
-                } else if(target[0].type == 'checkbox') {
+                } else if (target[0].type == 'checkbox') {
                     target[0].checked = value
-                } else if(target[0].type == 'radio') {
-                    if(target[0].value == value) {
+                } else if (target[0].type == 'radio') {
+                    if (target[0].value == value) {
                         target[0].checked = true
                     } else if (target[1].value == value) {
                         target[1].checked = true
@@ -26,42 +26,42 @@ function init_vaild_check() {
             }
         }
         var chart_id = $(this).val()
-        if(chart_id.length == 8) {
+        if (chart_id.length == 8) {
             $.ajax({
-                url: '/patient/'+chart_id,
+                url: '/patient/' + chart_id,
                 type: "GET",
                 dataType: "json"
-            }).done(function(response){
-                if(response.basic_info != null) {
+            }).done(function (response) {
+                if (response.basic_info != null) {
                     set_chart(response.basic_info)
                 }
-                if(response.bodychart != null) {
+                if (response.bodychart != null) {
                     set_chart(response.bodychart)
                 }
-                if(response.eav != null) {
+                if (response.eav != null) {
                     set_chart(response.eav)
                 }
-                if(response.tongue != null) {
+                if (response.tongue != null) {
                     set_chart(response.tongue)
                 }
-                if($.isEmptyObject(response)) {
+                if ($.isEmptyObject(response)) {
                     $('#patient-data-submit')[0].reset()
                     $('#input-chart-id').val(chart_id)
                 }
-            }).always(function(response){
+            }).always(function (response) {
                 // console.log(response)
             });
         }
     });
 
-    $("#input-age").on("change paste keyup", function() {
+    $("#input-age").on("change paste keyup", function () {
         var age = $(this).val()
         if (age > 120) {
             $(this).addClass('is-invalid');
         } else {
             $(this).removeClass('is-invalid');
         }
-     });
+    });
 }
 
 function getCookie(name) {
@@ -82,12 +82,12 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 
 function init_jq_post() {
-    $("#patient-data-submit").submit(function(event) {
+    $("#patient-data-submit").submit(function (event) {
         event.preventDefault();
         $('#submit-btn').val("저장 중")
         $('#submit-btn').removeClass('btn-success').addClass('btn-secondary disabled')
         $('#submit-btn').children(".fa").addClass('fa-refresh fa-spin')
-        var job_done = function() {
+        var job_done = function () {
             $('#submit-btn').val("저장하기")
             $('#submit-btn').removeClass('btn-primary btn-danger disabled').addClass('btn-success')
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
@@ -95,38 +95,38 @@ function init_jq_post() {
 
         var $form = $(this);
         url = $form.attr("action");
-        
+
         var chart_id = $form.find("input[name='input-chart-id']").val();
-        
+
         var basic_info = {}
-        $.each($('.basic_info'), function(_, value) {
+        $.each($('.basic_info'), function (_, value) {
             basic_info[value.name] = value.value
         })
 
         var bodychart = {}
-        $.each($('.bodychart'), function(_, value) {
-            if(value.type=='text') {
+        $.each($('.bodychart'), function (_, value) {
+            if (value.type == 'text') {
                 bodychart[value.name] = value.value
-            } else if (value.type=='checkbox') {
+            } else if (value.type == 'checkbox') {
                 bodychart[value.name] = value.checked
-            } else if (value.type=='radio') {
-                if(value.checked) {
+            } else if (value.type == 'radio') {
+                if (value.checked) {
                     bodychart[value.name] = value.value
                 }
             }
         })
-    
+
         var eav = {}
-        $.each($('.eav'), function(_, value) {
+        $.each($('.eav'), function (_, value) {
             eav[value.name] = value.value
         })
 
         var tongue = {}
-        $.each($('.tongue'), function(_, value) {
-            if (value.type=='checkbox') {
+        $.each($('.tongue'), function (_, value) {
+            if (value.type == 'checkbox') {
                 tongue[value.name] = value.checked
-            } else if (value.type=='radio') {
-                if(value.checked) {
+            } else if (value.type == 'radio') {
+                if (value.checked) {
                     tongue[value.name] = value.value
                 }
             }
@@ -143,27 +143,61 @@ function init_jq_post() {
         $.ajax({
             url: url,
             type: "POST",
-            headers: {'X-CSRFToken': csrftoken},
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
             data: payload,
-        }).done(function(response) {
+        }).done(function (response) {
             $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-primary')
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
             $('#submit-btn').val("저장성공!")
-        }).fail(function(error){
+        }).fail(function (error) {
             $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-danger')
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
             $('#submit-btn').val("저장실패!")
-        }).always(function(){
+        }).always(function () {
             // console.log(payload)
             setTimeout(job_done, 1500)
+            init_get_patient_list()
         });
     });
 }
+
+function init_get_patient_list() {
+    var $list = $(document).find('.list-patient')
+    $list.empty()
+    $.ajax({
+        url: '/patients/',
+        type: "GET",
+        dataType: "json"
+    }).done(function (response) {
+        $.each(response, function (_, value) {
+            $.each(value, function (_, val) {
+                var a_list = document.createElement('a')
+                a_list.className = 'list-group-item list-group-item-action'
+                a_list.setAttribute('role', 'tab')
+                a_list.setAttribute('href', val)
+                a_list.setAttribute('data-toggle', 'list')
+                a_list.textContent = val
+                $list.append(a_list)
+            })
+        })
+        $('#patientList a').on('click', function (e) {
+            e.preventDefault()
+            $('#input-chart-id').val($(this).attr('href'))
+            $('#input-chart-id').trigger('change')
+        })
+    }).fail(function (response) {
+        console.log("fail")
+    })
+}
+
 
 $(document).ready(function ($) {
     init_datatimepicker();
     init_vaild_check();
     init_jq_post();
+    init_get_patient_list();
 
     var ajax_data = [{
             pName: "첩약1",

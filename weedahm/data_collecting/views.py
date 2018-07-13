@@ -16,6 +16,14 @@ def patient(request, chart_id):
         return JsonResponse({})
     return JsonResponse(patient.json_data)
 
+def patients(request):
+    try:
+        patient = Patient.objects.all().order_by("-chart_id")
+    except Patient.DoesNotExist:
+        return JsonResponse({})
+    chart_ids = list((patient.values('chart_id')))
+    return JsonResponse(chart_ids, safe=False)
+
 def submit(request):
     received_json_data = json.loads(request.body)
     chart_id = received_json_data['chart_id']

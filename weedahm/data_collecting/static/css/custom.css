@@ -96,6 +96,15 @@ html {
 .section-search {
   padding-top: 8px;
 }
+/* patient list */
+.layout-content-list {
+  padding-top: 12px;
+}
+
+.list-patient {
+  height: 500px;
+  overflow-y: scroll;
+}
 
 /* basic information */
 .form-row.basic-information-row {

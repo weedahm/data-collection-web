@@ -3,15 +3,17 @@
 <div class="snb_list">
     <div class="box_with_border">
         <div class="section-header">
-            <span class="section-header-text">환자 검색</span>
+            <span class="section-header-text">환자 리스트</span>
         </div>
-        <div class="section-search">
+        <!-- <div class="section-search">
             <div class="input-daterange input-group">
                 <input type="text" class="form-control" name="start" />
                 <input type="text" class="form-control" name="end" />
             </div>
+        </div> -->
+        <div class="layout-content-list">
+            <div id="patientList" class="list-patient list-group list-group-flush" id="list-tab" role="tablist"></div>
         </div>
-
     </div>
 </div>
 
@@ -35,7 +37,8 @@
                     </div>
                     <div class="form-group basic-information-group">
                         <label for="input-age">나이</label>
-                        <input id="input-age" name="input-age" type="text" class="basic_info form-control basic-information-input" style="width: 70px;" maxlength="3">
+                        <input id="input-age" name="input-age" type="text" class="basic_info form-control basic-information-input" style="width: 70px;"
+                            maxlength="3">
                         <div class="invalid-feedback">
                             Please provide a valid city.
                         </div>
@@ -55,8 +58,8 @@
                     </div>
                     <div class="form-group basic-information-group">
                         <label for="input-blood-high">고</label>
-                        <input type="text" class="basic_info form-control basic-information-input" id="input-blood-high" name="input-blood-high" style="width: 70px;"
-                            maxlength="3">
+                        <input type="text" class="basic_info form-control basic-information-input" id="input-blood-high" name="input-blood-high"
+                            style="width: 70px;" maxlength="3">
                     </div>
                     <div class="form-group basic-information-group">
                         <label for="input-blood-low">저</label>
@@ -719,7 +722,7 @@
 
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label" for="설태담">담</label>
-                                <input class="form-check-input tongue" type="checkbox"  name="설태담" id="설태담">
+                                <input class="form-check-input tongue" type="checkbox" name="설태담" id="설태담">
                             </div>
                         </div>
 
