@@ -7,29 +7,46 @@ function init_datatimepicker() {
 
 function init_vaild_check() {
     $("#input-chart-id").on("change paste keyup", function() {
+        var set_chart = function(entry) {
+            for(const [key, value] of Object.entries(entry)) {
+                var target = $('[name='+ key +']')
+                if(target[0].type == 'text') {
+                    target[0].value = value;
+                } else if(target[0].type == 'checkbox') {
+                    target[0].checked = value
+                } else if(target[0].type == 'radio') {
+                    if(target[0].value == value) {
+                        target[0].checked = true
+                    } else if (target[1].value == value) {
+                        target[1].checked = true
+                    }
+                } else {
+                    target.val(value)
+                }
+            }
+        }
         var chart_id = $(this).val()
         if(chart_id.length == 8) {
             $.ajax({
                 url: '/patient/'+chart_id,
                 type: "GET",
-                dataType: "json",
-                success: function(response) {
-                    var recieved_json_data = response
-                    if($.isEmptyObject(recieved_json_data)) {
-                        $('#input-age').val(recieved_json_data.age)
-                        $('#input-height').val(recieved_json_data.height)
-                        $('#input-weight').val(recieved_json_data.weight)
-                        $('#input-blood-high').val(recieved_json_data.blood_high)
-                        $('#input-blood-low').val(recieved_json_data.blood_low)
-                    } else {
-                        $('#input-gender').val(recieved_json_data.gender)
-                        $('#input-age').val(recieved_json_data.age)
-                        $('#input-height').val(recieved_json_data.height)
-                        $('#input-weight').val(recieved_json_data.weight)
-                        $('#input-blood-high').val(recieved_json_data.blood_high)
-                        $('#input-blood-low').val(recieved_json_data.blood_low)
-                    }
+                dataType: "json"
+            }).done(function(response){
+                if(response.basic_info != null) {
+                    set_chart(response.basic_info)
                 }
+                if(response.bodychart != null) {
+                    set_chart(response.bodychart)
+                }
+                if(response.eav != null) {
+                    set_chart(response.eav)
+                }
+                if($.isEmptyObject(response)) {
+                    $('#patient-data-submit')[0].reset()
+                    $('#input-chart-id').val(chart_id)
+                }
+            }).always(function(response){
+                // console.log(response)
             });
         }
     });
@@ -64,27 +81,48 @@ var csrftoken = getCookie('csrftoken');
 function init_jq_post() {
     $("#patient-data-submit").submit(function(event) {
         event.preventDefault();
-        $('#submit-btn').children(".fa").addClass('fa fa-refresh fa-spin')
+        $('#submit-btn').val("저장 중")
+        $('#submit-btn').removeClass('btn-success').addClass('btn-secondary disabled')
+        $('#submit-btn').children(".fa").addClass('fa-refresh fa-spin')
+        var job_done = function() {
+            $('#submit-btn').val("저장하기")
+            $('#submit-btn').removeClass('btn-primary btn-danger disabled').addClass('btn-success')
+            $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
+        }
 
         var $form = $(this);
         url = $form.attr("action");
         
         var chart_id = $form.find("input[name='input-chart-id']").val();
-        var gender = $form.find("select[name='input-gender']").val();
-        var age = $form.find("input[name='input-age']").val();
-        var height = $form.find("input[name='input-height']").val();
-        var weight = $form.find("input[name='input-weight']").val();
-        var blood_high = $form.find("input[name='input-blood-high']").val();
-        var blood_low = $form.find("input[name='input-blood-low']").val();
+        
+        var basic_info = {}
+        $.each($('.basic_info'), function(_, value) {
+            basic_info[value.name] = value.value
+        })
+
+        var bodychart = {}
+        $.each($('.bodychart'), function(_, value) {
+            if(value.type=='text') {
+                bodychart[value.name] = value.value
+            } else if (value.type=='checkbox') {
+                bodychart[value.name] = value.checked
+            } else if (value.type=='radio') {
+                if(value.checked) {
+                    bodychart[value.name] = value.value
+                }
+            }
+        })
     
+        var eav = {}
+        $.each($('.eav'), function(_, value) {
+            eav[value.name] = value.value
+        })
+
         var payload = JSON.stringify({
             chart_id: chart_id,
-            gender: gender,
-            age: age,
-            height: height,
-            weight: weight,
-            blood_high: blood_high,
-            blood_low: blood_low
+            basic_info: basic_info,
+            bodychart: bodychart,
+            eav: eav
         });
 
         $.ajax({
@@ -92,13 +130,17 @@ function init_jq_post() {
             type: "POST",
             headers: {'X-CSRFToken': csrftoken},
             data: payload,
-            dataType: "json",
-            success: function(response){
-                console.log("success")
-                // $('#submit-btn').children(".fa").removeClass('fa fa-refresh fa-spin')
-            }
+        }).done(function(response) {
+            $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-primary')
+            $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
+            $('#submit-btn').val("저장성공!")
         }).fail(function(error){
-            console.log("fail");
+            $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-danger')
+            $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
+            $('#submit-btn').val("저장실패!")
+        }).always(function(){
+            // console.log(payload)
+            setTimeout(job_done, 1500)
         });
     });
 }

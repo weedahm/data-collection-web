@@ -20,7 +20,7 @@ def submit(request):
     received_json_data = json.loads(request.body)
     chart_id = received_json_data['chart_id']
     patient = Patient.objects.filter(chart_id=chart_id)
-    if patient is None:
+    if len(patient) == 0:
         p = Patient(
             chart_id = chart_id,
             json_data = received_json_data,
@@ -32,7 +32,6 @@ def submit(request):
             patient.update(json_data=received_json_data)
             return HttpResponse("Update Success")
         else:
-            print("No Changes!")
             return HttpResponse("No Changes")
 
     # return render(request, 'data_collecting/main.html')
