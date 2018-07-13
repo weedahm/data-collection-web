@@ -24,6 +24,10 @@ def authenticate(request):
 	else:
 		return HttpResponseRedirect(reverse('data_collecting:login'))
 
+def logout(request):
+	auth.logout(request)
+	return HttpResponseRedirect(reverse('data_collecting:login'))
+
 @login_required(login_url='/login')
 def index(request):
     return render(request, 'data_collecting/main.html')

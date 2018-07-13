@@ -56,10 +56,58 @@ function init_vaild_check() {
 
     $("#input-age").on("change paste keyup", function () {
         var age = $(this).val()
-        if (age > 120) {
+        if (age > 150 || age < 0) {
             $(this).addClass('is-invalid');
         } else {
             $(this).removeClass('is-invalid');
+        }
+    });
+
+    $("#input-height").on("change paste keyup", function () {
+        var height = $(this).val()
+        if (height > 300 || height < 0) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $("#input-weight").on("change paste keyup", function () {
+        var weight = $(this).val()
+        if (weight > 300 || weight < 0) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $("#input-blood-high").on("change paste keyup", function () {
+        var blood = $(this).val()
+        if (blood > 200) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $("#input-blood-low").on("change paste keyup", function () {
+        var blood = $(this).val()
+        if (blood < 50) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $(".bodychart").on("change paste keyup", function () {
+        console.log("on change")
+        var a = $(this).val()
+        if (a > 6) {
+            $(this).addClass('is-invalid');
+            $(this).css("color", "#BF091C")
+        } else {
+            $(this).removeClass('is-invalid');
+            $(this).css("color", "")
         }
     });
 }

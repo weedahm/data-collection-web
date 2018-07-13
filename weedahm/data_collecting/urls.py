@@ -6,6 +6,7 @@ app_name = 'data_collecting'
 urlpatterns = [
     path('login', views.login, name='login'),
     path('authenticate', views.authenticate, name='authenticate'),
+    path('logout', views.logout, name='logout'),
     path('', views.index, name='index'),
     path('submit', views.submit, name='submit'),
     path('patients/', views.patients, name='patients'),

@@ -11,8 +11,10 @@
                 <input type="text" class="form-control" name="end" />
             </div>
         </div> -->
-        <div class="layout-content-list">
-            <div id="patientList" class="list-patient list-group list-group-flush" id="list-tab" role="tablist"></div>
+        <div class="layout-content-list scrollbar-default">
+            <div class="force-overflow">
+                <div id="patientList" class="list-patient list-group list-group-flush" id="list-tab" role="tablist"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -24,9 +26,9 @@
             <div class="box_with_border">
                 <div class="form-row basic-information-row">
                     <div class="form-group basic-information-group">
-                        <label for="input-chart-id">차트번호</label>
+                        <label for="input-chart-id">* 차트번호</label>
                         <input id="input-chart-id" name="input-chart-id" type="text" class="basic_info form-control basic-information-input" style="width: 120px;"
-                            maxlength="8">
+                            maxlength="8" required>
                     </div>
                     <div class="form-group basic-information-group">
                         <label for="input-gender">성별</label>
@@ -36,39 +38,50 @@
                         </select>
                     </div>
                     <div class="form-group basic-information-group">
-                        <label for="input-age">나이</label>
+                        <label for="input-age">* 나이</label>
                         <input id="input-age" name="input-age" type="text" class="basic_info form-control basic-information-input" style="width: 70px;"
-                            maxlength="3">
+                            maxlength="3" required>
                         <div class="invalid-feedback">
-                            Please provide a valid city.
+                            정확한 나이를 입력해주세요.
                         </div>
                     </div>
                     <div class="form-group basic-information-group">
                         <label for="input-height">키</label>
                         <input id="input-height" name="input-height" type="text" class="basic_info form-control basic-information-input" style="width: 70px;"
                             maxlength="3">
+                        <div class="invalid-feedback">
+                            정확한 키를 입력해주세요.
+                        </div>
                     </div>
                     <div class="form-group basic-information-group">
                         <label for="input-weight">몸무게</label>
                         <input id="input-weight" name="input-weight" type="text" class="basic_info form-control basic-information-input" style="width: 70px;"
                             maxlength="3">
+                        <div class="invalid-feedback">
+                            정확한 몸무게를 입력해주세요.
+                        </div>
                     </div>
                     <div class="form-group basic-information-group">
                         <label for="input-blood-high">혈압</label>
                     </div>
                     <div class="form-group basic-information-group">
-                        <label for="input-blood-high">고</label>
+                        <label for="input-blood-high">수축기</label>
                         <input type="text" class="basic_info form-control basic-information-input" id="input-blood-high" name="input-blood-high"
                             style="width: 70px;" maxlength="3">
+                        <div class="invalid-feedback">
+                            정확한 혈압을 입력해주세요.
+                        </div>
                     </div>
                     <div class="form-group basic-information-group">
-                        <label for="input-blood-low">저</label>
+                        <label for="input-blood-low">이완기</label>
                         <input type="text" class="basic_info form-control basic-information-input" id="input-blood-low" name="input-blood-low" style="width: 70px;"
                             maxlength="3">
+                        <div class="invalid-feedback">
+                            정확한 혈압을 입력해주세요.
+                        </div>
                     </div>
 
                     <div class="form-group basic-information-btn-group">
-                        <button class="btn btn-outline-success btn-custom" type="submit">임시저장</button>
                         <input id="submit-btn" class="btn btn-success btn-custom" type="submit" value="저장하기">
                         <span class="fa"></span>
                         </input>
@@ -88,12 +101,12 @@
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 70px;">
                             <label class="bodychart-label" for="두통">두통</label>
-                            <input name="두통" class="bodychart-input-text bodychart" type="text" maxlength="1">
+                            <input name="두통" class="form-control bodychart-input-text bodychart" type="text" maxlength="1">
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 150px;">
                             <label class="bodychart-label" for="현훈">현훈</label>
-                            <input name="현훈" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                            <input name="현훈" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 230px;">
@@ -139,21 +152,21 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 50px; left: 290px;">
                             <label class="bodychart-label" for="안구건조">안구건조</label>
                             <div class="">
-                                <input name="안구건조" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="안구건조" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 50px; left: 608px;">
                             <label class="bodychart-label" for="피로감">피로감</label>
                             <div class="non-padding">
-                                <input name="피로감" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="피로감" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 70px;">
                             <label class="bodychart-label" for="구취">구취</label>
                             <div class="">
-                                <input name="구취" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="구취" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
@@ -181,28 +194,28 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 90px; left: 608px;">
                             <label class="bodychart-label" for="건망증">건망증</label>
                             <div class="non-padding">
-                                <input name="건망증" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="건망증" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 30px;">
                             <label class="bodychart-label" for="급">급</label>
                             <div class="">
-                                <input name="급" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="급" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 30px;">
                             <label class="bodychart-label" for="폭">폭</label>
                             <div class="">
-                                <input name="폭" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="폭" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 30px;">
                             <label class="bodychart-label" for="과">과</label>
                             <div class="">
-                                <input name="과" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="과" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
@@ -237,112 +250,112 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 310px;">
                             <label class="bodychart-label" for="不">不</label>
                             <div class="non-padding">
-                                <input name="不" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="不" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 390px;">
                             <label class="bodychart-label" for="면">면</label>
                             <div class="non-padding">
-                                <input name="면" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="면" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 470px;">
                             <label class="bodychart-label" for="육">육</label>
                             <div class="non-padding">
-                                <input name="육" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="육" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 560px;">
                             <label class="bodychart-label" for="인">인</label>
                             <div class="non-padding">
-                                <input name="인" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="인" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 130px; left: 640px;">
                             <label class="bodychart-label" for="견통">견통</label>
                             <div class="">
-                                <input name="견통" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="견통" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 310px;">
                             <label class="bodychart-label" for="소화불량">소화불량</label>
                             <div class="">
-                                <input name="소화불량" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="소화불량" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 410px;">
                             <label class="bodychart-label" for="명치답답">명치답답</label>
                             <div class="">
-                                <input name="명치답답" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="명치답답" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 170px; left: 510px;">
                             <label class="bodychart-label" for="체함">체함</label>
                             <div class="">
-                                <input name="체함" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="체함" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 310px;">
                             <label class="bodychart-label" for="심계">심계</label>
                             <div class="">
-                                <input name="심계" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="심계" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 390px;">
                             <label class="bodychart-label" for="불안">불안</label>
                             <div class="">
-                                <input name="불안" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="불안" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 310px;">
                             <label class="bodychart-label" for="흉민">흉민</label>
                             <div class="">
-                                <input name="흉민" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="흉민" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 390px;">
                             <label class="bodychart-label" for="흉통">흉통</label>
                             <div class="">
-                                <input name="흉통" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="흉통" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 298px;">
                             <label class="bodychart-label" for="상열감">상열감</label>
                             <div class="non-padding">
-                                <input name="상열감" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="상열감" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 390px;">
                             <label class="bodychart-label" for="숨참">숨참</label>
                             <div class="">
-                                <input name="숨참" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="숨참" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 30px;">
                             <label class="bodychart-label" for="더부룩가스">더부룩</label>
                             <div class="non-padding">
-                                <input name="더부룩가스" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="더부룩가스" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 290px; left: 30px;">
                             <label class="bodychart-label" for="트림">트림</label>
                             <div class="non-padding">
-                                <input name="트림" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="트림" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
@@ -356,7 +369,7 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 30px;">
                             <label class="bodychart-label" for="속쓰림">속쓰림</label>
                             <div class="non-padding">
-                                <input name="속쓰림" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="속쓰림" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
@@ -370,35 +383,35 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 30px;">
                             <label class="bodychart-label" for="역류">역류</label>
                             <div class="">
-                                <input name="역류" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="역류" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 410px; left: 30px;">
                             <label class="bodychart-label" for="오심">오심</label>
                             <div class="">
-                                <input name="오심" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="오심" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 450px; left: 30px;">
                             <label class="bodychart-label" for="복통">복통</label>
                             <div class="">
-                                <input name="복통" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="복통" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 210px; left: 140px;">
                             <label class="bodychart-label" for="복진-상">복진-상</label>
                             <div class="">
-                                <input name="복진-상" type="text" class="bodychart-input-text bodychart" style="width: 70px;" maxlength="5">
+                                <input name="복진-상" type="text" class="form-control bodychart-input-text bodychart" style="width: 70px;" maxlength="5">
                             </div>
                         </div>
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 250px; left: 140px;">
                             <label class="bodychart-label" for="복진-하">복진-하</label>
                             <div class="">
-                                <input name="복진-하" type="text" class="bodychart-input-text bodychart" style="width: 70px;" maxlength="5">
+                                <input name="복진-하" type="text" class="form-control bodychart-input-text bodychart" style="width: 70px;" maxlength="5">
                             </div>
                         </div>
 
@@ -426,7 +439,7 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 370px; left: 300px;">
                             <label class="bodychart-label" for="잔뇨감">잔뇨감</label>
                             <div class="non-padding">
-                                <input name="잔뇨감" type="text" class="bodychart-input-text bodychart" maxlength="1" placeholder="회">
+                                <input name="잔뇨감" type="text" class="form-control bodychart-input-text bodychart" maxlength="1" placeholder="회">
                             </div>
                         </div>
 
@@ -461,7 +474,7 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 330px; left: 460px;">
                             <label class="bodychart-label" for="대변">대변</label>
                             <div class="non-padding">
-                                <input name="대변" type="text" class="bodychart-input-text bodychart" maxlength="1">
+                                <input name="대변" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                             </div>
                         </div>
 
