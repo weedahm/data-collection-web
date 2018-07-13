@@ -41,6 +41,9 @@ function init_vaild_check() {
                 if(response.eav != null) {
                     set_chart(response.eav)
                 }
+                if(response.tongue != null) {
+                    set_chart(response.tongue)
+                }
                 if($.isEmptyObject(response)) {
                     $('#patient-data-submit')[0].reset()
                     $('#input-chart-id').val(chart_id)
@@ -118,11 +121,23 @@ function init_jq_post() {
             eav[value.name] = value.value
         })
 
+        var tongue = {}
+        $.each($('.tongue'), function(_, value) {
+            if (value.type=='checkbox') {
+                tongue[value.name] = value.checked
+            } else if (value.type=='radio') {
+                if(value.checked) {
+                    tongue[value.name] = value.value
+                }
+            }
+        })
+
         var payload = JSON.stringify({
             chart_id: chart_id,
             basic_info: basic_info,
             bodychart: bodychart,
-            eav: eav
+            eav: eav,
+            tongue: tongue
         });
 
         $.ajax({
