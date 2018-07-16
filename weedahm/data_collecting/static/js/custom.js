@@ -80,6 +80,7 @@ function init_vaild_check() {
                     set_prescription(response.prescription)
                 }
                 if ($.isEmptyObject(response)) {
+                    $('.prescription').find('tbody').empty()
                     $('#patient-data-submit')[0].reset()
                     $('#input-chart-id').val(chart_id)
                 }
@@ -135,7 +136,6 @@ function init_vaild_check() {
     });
 
     $(".bodychart").on("change paste keyup", function () {
-        console.log("on change")
         var a = $(this).val()
         if (a > 6) {
             $(this).addClass('is-invalid');
@@ -276,6 +276,7 @@ function init_get_patient_list() {
         })
         $('#patientList a').on('click', function (e) {
             e.preventDefault()
+            $('#patient-data-submit')[0].reset()
             $('#input-chart-id').val($(this).attr('href'))
             $('#input-chart-id').trigger('change')
         })
@@ -295,10 +296,16 @@ function init_events() {
         var $tbody = $(this).closest('.prescription').find('tbody')
         var medicine = $(this).closest('.form-row').find('select').val()
         var gram = $(this).closest('.form-row').find('input').val()
-        $tbody.append(get_table_row(medicine, gram))
-        $tbody.find('button.close').on('click', function () {
-            $(this).closest('tr').remove()
-        })
+        if (gram == '') {
+            $(this).closest('.form-row').find('input').addClass('is-invalid')
+        } else {
+            $(this).closest('.form-row').find('input').removeClass('is-invalid')
+            $(this).closest('prescription').find('span.sum').append("test")
+            $tbody.append(get_table_row(medicine, gram))
+            $tbody.find('button.close').on('click', function () {
+                $(this).closest('tr').remove()
+            })
+        }
     })
 }
 
