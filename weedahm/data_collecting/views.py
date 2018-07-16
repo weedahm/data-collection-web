@@ -68,4 +68,8 @@ def submit(request):
         else:
             return HttpResponse("No Changes")
 
-    # return render(request, 'data_collecting/main.html')
+@login_required(login_url='/login')
+def delete(request):
+    chart_id = request.POST['deleteId']
+    Patient.objects.filter(chart_id=chart_id).delete()
+    return HttpResponseRedirect(reverse('data_collecting:index'))

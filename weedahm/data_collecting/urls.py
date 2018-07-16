@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('', views.index, name='index'),
     path('submit', views.submit, name='submit'),
+    path('delete', views.delete, name='delete'),
     path('patients/', views.patients, name='patients'),
     path('patient/<str:chart_id>', views.patient, name='patient')
 ]

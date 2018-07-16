@@ -117,7 +117,6 @@ html {
 
 .list-patient {
   height: 500px;
-  
 }
 
 /* basic information */
@@ -239,8 +238,22 @@ p.tongue-form-category {
   padding-top: 8px;
 }
 
-.section-prescription-table {
+.section-prescription-form {
   padding-top: 8px;
+}
+
+.pre-table-scroll {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  overflow-y: scroll;
+}
+
+.pre-table {
+  height: 300px;
+}
+
+.close span {
+  font-size: 18px;
 }
 
 /* footer */
@@ -397,7 +410,7 @@ p.footer {
 }
 
 .scrollbar-default::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
   background-color: #F5F5F5;
 }
 
