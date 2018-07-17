@@ -2,7 +2,7 @@ function get_table_row(medicine, gram) {
     var tbl = '';
     tbl += '<tr class="prescriptions">';
     tbl += '<td style="width: 50%;" value="' + medicine + '">' + medicine + '</td>'
-    tbl += '<td style="width: 25%;" value="' + gram + '">' + gram + '</td>'
+    tbl += '<td class="dose" style="width: 25%;" value="' + gram + '">' + gram + '</td>'
     tbl += '<td style="width: 25%;"><button type="button" class="close"><span class="fa fa-close"></span></button></td>'
     tbl += '</tr>'
     return tbl
@@ -40,22 +40,24 @@ function init_vaild_check() {
             for (const [key, value] of Object.entries(entry)) {
                 var tokens = key.split("_")
                 switch (tokens[0]) {
-                    case '처방 1':
+                    case '처방1':
                         $tbody
                         $('.prescription.first').find('tbody').append(get_table_row(tokens[1], value))
                         break;
-                    case '처방 2':
+                    case '처방2':
                         $('.prescription.second').find('tbody').append(get_table_row(tokens[1], value))
                         break;
-                    case '처방 3':
+                    case '처방3':
                         $('.prescription.third').find('tbody').append(get_table_row(tokens[1], value))
                         break;
                 }
-                var $tbody = $('.prescription').find('tbody')
-                $tbody.find('button.close').on('click', function () {
-                    $(this).closest('tr').remove()
-                })
             }
+            var $tbody = $('.prescription').find('tbody')
+            $tbody.find('button.close').on('click', function () {
+                $(this).closest('tr').remove()
+                sumDoses()
+            })
+            sumDoses()
         }
         var chart_id = $(this).val()
         if (chart_id.length == 8) {
@@ -168,11 +170,11 @@ function init_jq_post() {
     $("#patient-data-submit").submit(function (event) {
         event.preventDefault();
         $('#submit-btn').val("저장 중")
-        $('#submit-btn').removeClass('btn-success').addClass('btn-secondary disabled')
+        $('#submit-btn').removeClass('btn-info').addClass('btn-secondary disabled')
         $('#submit-btn').children(".fa").addClass('fa-refresh fa-spin')
         var job_done = function () {
             $('#submit-btn').val("저장하기")
-            $('#submit-btn').removeClass('btn-primary btn-danger disabled').addClass('btn-success')
+            $('#submit-btn').removeClass('btn-primary btn-danger disabled').addClass('btn-info')
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
         }
 
@@ -217,7 +219,7 @@ function init_jq_post() {
 
         var prescription = {}
         $.each($('.prescriptions'), function (_, value) {
-            var category = $(this).closest('.prescription').find('h5').html()
+            var category = $(this).closest('.prescription').find('h5').attr('value')
             var name = value.children.item(0).innerHTML
             var gram = value.children.item(1).innerHTML
             prescription[category + '_' + name] = gram
@@ -248,7 +250,6 @@ function init_jq_post() {
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
             $('#submit-btn').val("저장실패!")
         }).always(function () {
-            // console.log(payload)
             setTimeout(job_done, 1500)
             init_get_patient_list()
         });
@@ -293,20 +294,40 @@ function init_events() {
     });
 
     $('.pre-btn').on('click', function () {
-        var $tbody = $(this).closest('.prescription').find('tbody')
+        var $prescription = $(this).closest('.prescription')
+        var $tbody = $prescription.find('tbody')
         var medicine = $(this).closest('.form-row').find('select').val()
         var gram = $(this).closest('.form-row').find('input').val()
         if (gram == '') {
             $(this).closest('.form-row').find('input').addClass('is-invalid')
         } else {
             $(this).closest('.form-row').find('input').removeClass('is-invalid')
-            $(this).closest('prescription').find('span.sum').append("test")
             $tbody.append(get_table_row(medicine, gram))
             $tbody.find('button.close').on('click', function () {
                 $(this).closest('tr').remove()
+                sumDoses()
             })
+            sumDoses()
         }
     })
+}
+
+function sumDoses() {
+    $.each($('.prescription'), function () {
+        var currentDose = 0;
+        $sum = $(this).find('span.sum')
+        $doses = $(this).find('td.dose')
+        $.each($doses, function (_, value) {
+            currentDose += Number(value.innerHTML)
+        })
+        $sum.html(currentDose)
+    })
+    // $sum = $target.find('span.sum')
+    // $doses = $target.find('td.dose')
+    // $.each($doses, function (_, value) {
+    //     sum += Number(value.innerHTML)
+    // })
+    // $sum.html(sum)
 }
 
 $(document).ready(function ($) {
