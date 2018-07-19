@@ -72,6 +72,9 @@ function init_vaild_check() {
                 if (response.bodychart != null) {
                     set_chart(response.bodychart)
                 }
+                if (response.abdominal != null) {
+                    set_chart(response.abdominal)
+                }
                 if (response.eav != null) {
                     set_chart(response.eav)
                 }
@@ -201,6 +204,11 @@ function init_jq_post() {
             }
         })
 
+        var abdominal = {}
+        $.each($('.abdominal'), function (_, value) {
+            abdominal[value.name] = value.value
+        })
+
         var eav = {}
         $.each($('.eav'), function (_, value) {
             eav[value.name] = value.value
@@ -229,6 +237,7 @@ function init_jq_post() {
             chart_id: chart_id,
             basic_info: basic_info,
             bodychart: bodychart,
+            abdominal: abdominal,
             eav: eav,
             tongue: tongue,
             prescription: prescription
@@ -322,12 +331,36 @@ function sumDoses() {
         })
         $sum.html(currentDose)
     })
-    // $sum = $target.find('span.sum')
-    // $doses = $target.find('td.dose')
-    // $.each($doses, function (_, value) {
-    //     sum += Number(value.innerHTML)
-    // })
-    // $sum.html(sum)
+}
+
+function init_chart() {
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ["담적", "소화", "신경", "순환", "기타", "특정"],
+            datasets: [{
+                backgroundColor: "rgba(3, 88, 106, 0.2)",
+                borderColor: "rgba(3, 88, 106, 0.80)",
+                pointBorderColor: "rgba(3, 88, 106, 0.80)",
+                pointBackgroundColor: "rgba(3, 88, 106, 0.80)",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                data: [90, 59, 40, 35, 78, 66]
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
 }
 
 $(document).ready(function ($) {
@@ -336,4 +369,5 @@ $(document).ready(function ($) {
     init_jq_post();
     init_get_patient_list();
     init_events();
+    init_chart();
 });

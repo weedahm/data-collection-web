@@ -38,6 +38,8 @@ def patient(request, chart_id):
         patient = Patient.objects.get(chart_id=chart_id)
     except Patient.DoesNotExist:
         return JsonResponse({})
+    # encoded = json.dumps(patient.json_data, indent=4, sort_keys=True, ensure_ascii=False)
+    # print(encoded)
     return JsonResponse(patient.json_data)
 
 @login_required(login_url='/login')
