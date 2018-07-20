@@ -1,26 +1,48 @@
 {% load static %}
 <div class="wd_A">
-    <div class="wd_a wd_AA box">
+    <div class="wd_AA box">
         <div class="wd_AAA box">
-
+            <img src="{% static 'his/images/logo.png' %}" style="width: 36px; height: 36px;">
         </div>
         <div class="wd_AAB box">
-            <!-- <img src="{% static 'his/images/logo.jpg' %}" style="width: 109px; height: 50px;"> -->
             <span>위담한방병원</span>
         </div>
     </div>
-    <div class="wd_a wd_AB box">
-        <div class="wd_ab wd_ABA box">
-            <span>환자조회</span>
+    <div class="wd_AB box">
+        <div>
+            <div class="wd_ab wd_ABA" data-toggle="dropdown" id="paitentSearch" aria-expanded="false">
+                <span>환자조회</span>
+            </div>
+            <div class='wd dropdown-menu' aria-labelledby="paitentSearch">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
-        <div class="wd_ab wd_ABB box">
-            <span>등록수납</span>
+        <div>
+            <div class="wd_ab wd_ABB" data-toggle="dropdown" id="Registration" aria-expanded="false">
+                <span>등록수납</span>
+            </div>
+            <div class='wd dropdown-menu' aria-labelledby="Registration">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
-        <div class="wd_ab wd_ABC box">
-            <span>진료지원</span>
+        <div>
+            <div class="wd_ab wd_ABC" data-toggle="dropdown" id="Clinic" aria-expanded="false">
+                <span>진료지원</span>
+            </div>
+            <div class='wd dropdown-menu' aria-labelledby="Clinic">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
+
     </div>
-    <div class="wd_a wd_AC box">
-        
+    <div class="wd_AC box">
+        <span style="padding-right: 8px;">환영합니다!정현규님 </span>
+        <img src="{% static 'his/images/user.png' %}" style="width: 36px; height: 36px;">
     </div>
 </div>

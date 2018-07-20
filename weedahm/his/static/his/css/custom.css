@@ -5,7 +5,7 @@ body {
 
 /* dev */
 .box {
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
 }
 
 #header {
@@ -14,44 +14,47 @@ body {
 
 .wd_A {
   width: 100%;
-  padding: 8px;
-  height: 80px;
+  padding: 0px 8px 0px 8px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-}
-
-.wd_a {
-  padding: 8px;
 }
 
 .wd_AA {
   flex: 1 0 auto;
   min-width: 280px;
   display: flex;
+  border-right: 1px solid #dee3eb;
 }
 
 .wd_AB {
   flex: 1 1 100%;
   min-width: 800px;
   display: flex;
-  padding: 0px 8px 0px 8px;
 }
 
 .wd_AC {
   flex: 1 0 auto;
-  width: 300px;
+  width: 200px;
+  border-left: 1px solid #dee3eb;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .wd_AAA {
-  width: 80px;
+  display: flex;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
 }
 
 .wd_AAB {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
+  width: 100px;
 }
 
 .wd_ab {
@@ -60,4 +63,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-right: 1px solid #dee3eb;
+  cursor: pointer;
+  height: 100%;
+}
+
+.wd.dropdown-menu {
+  margin-top: 4px;
+  border-radius: 0;
 }
