@@ -66,6 +66,10 @@ html {
 
 /* end header */
 
+/* sidebar */
+
+/* end sidebar */
+
 /* main */
 
 #container {
@@ -277,6 +281,7 @@ p.tongue-form-category {
 }
 
 /* abdominal */
+
 .abdominal {
   height: 40px;
   width: 80px;
@@ -361,6 +366,7 @@ p.footer {
 }
 
 /* ai diagnosis */
+
 .layout-ai-diagnosis {
   position: relative;
   float: right;

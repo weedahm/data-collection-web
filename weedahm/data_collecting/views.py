@@ -40,6 +40,8 @@ def patient(request, chart_id):
         return JsonResponse({})
     # encoded = json.dumps(patient.json_data, indent=4, sort_keys=True, ensure_ascii=False)
     # print(encoded)
+    last_modified = patient.created_date.strftime("%Y-%m-%d")
+    patient.json_data["last_modified"] = last_modified
     return JsonResponse(patient.json_data)
 
 @login_required(login_url='/login')

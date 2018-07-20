@@ -66,6 +66,10 @@ function init_vaild_check() {
                 type: "GET",
                 dataType: "json"
             }).done(function (response) {
+                if(response.last_modified != null) {
+                    $('.modified-date').attr('hidden', false)
+                    $('#last-modified-date').html(response.last_modified)
+                }
                 if (response.basic_info != null) {
                     set_chart(response.basic_info)
                 }
