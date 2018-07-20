@@ -1,0 +1,63 @@
+html,
+body {
+  height: 100%;
+}
+
+/* dev */
+.box {
+  border: 1px solid #000000;
+}
+
+#header {
+  border-bottom: 1px solid #dee3eb;
+}
+
+.wd_A {
+  width: 100%;
+  padding: 8px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.wd_a {
+  padding: 8px;
+}
+
+.wd_AA {
+  flex: 1 0 auto;
+  min-width: 280px;
+  display: flex;
+}
+
+.wd_AB {
+  flex: 1 1 100%;
+  min-width: 800px;
+  display: flex;
+  padding: 0px 8px 0px 8px;
+}
+
+.wd_AC {
+  flex: 1 0 auto;
+  width: 300px;
+}
+
+.wd_AAA {
+  width: 80px;
+}
+
+.wd_AAB {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+}
+
+.wd_ab {
+  flex-shrink: 1;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

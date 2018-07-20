@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.23']
 
 INSTALLED_APPS = [
     'data_collecting.apps.DataCollectingConfig',
+    'his.apps.HisConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,3 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    '/his/static/',
+    '/data_collecting/static/',
+]
