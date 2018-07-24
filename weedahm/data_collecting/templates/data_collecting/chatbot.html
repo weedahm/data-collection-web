@@ -1,0 +1,216 @@
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+    h2,h4{
+        text-align: center;
+      }
+      /* .intro{
+        background-color: #00968D;
+      } */
+      .intro{
+          padding: 0px 40px 0px 40px;
+          /* font-family: 'Jeju Gothic', sans-serif; */
+          font-family: 'Hanna', sans-serif;
+          /* font-family: 'Jeju Hallasan', cursive; */
+      }
+      .menu{
+          padding: 20px 30px 20px 30px;
+      }
+      #main {
+        max-width: 380px;
+        margin: 0 auto;
+        background-color: #00968D;
+      }
+
+      #main2{
+        max-width: 380px;
+        margin:auto;
+        background-color: #e3e7ee;
+      }
+      .chatbot{
+          position: relative;
+          bottom: 75px;
+          box-shadow: 0px 0px 9px 5px rgb(197, 193, 193);
+      }
+      .list-header{
+          position: relative;
+          height: 30px;
+          border-bottom: 1px solid #00968D;
+          padding: 0px 10px;
+      }
+      .lists{
+        padding: 10px 0px 0px 0px;
+      }
+      .list_with_border{
+        padding: 10px;
+        background: #fff;
+        box-shadow: 5px 5px 20px 0px rgb(197, 193, 193);
+        border-radius: 15px;
+      }
+      #chat_img{
+          position: relative; bottom:18px; right: 20px;
+          height: 40px;
+          width: auto;
+      }
+      #chat_img1{
+          position: relative;
+          height: 60px;
+          width: auto;
+      }
+      #chat_img2{
+          position: relative;bottom:14px; right: 15px;
+          height: 30px;
+          width: auto;
+      }
+      #chat_hello{
+          position: relative;
+          height: 45px;
+          width: auto;
+      }
+      /* .list{
+          width: 200px;
+          padding: 5px;
+          margin: 1px;
+          font-weight: bold;
+          background-color: beige;
+      }
+
+      .lists{
+          display: none;
+      }
+
+      a{
+          display: block;
+          border-bottom: 1px solid #fff;
+          text-decoration: none;
+          background: #ddd;
+          color: #fff;
+          padding: 10px;
+          font-weight: bold;
+          width: 190px;
+      }
+
+      .lists a:hover{
+          background: #000;
+      }
+      li{
+          display: inline;
+      }
+      ul{
+          display: inline;
+      } */
+</style>
+
+<div class="fixed">
+    <div class="chatbot">
+        <div style="overflow-y: scroll; height:620px;">
+        <div class="intro" id="main">
+            <br>
+            <h2 style="color: white">
+            <img src="\static\images\doctorW.png" id="chat_hello"></img>
+                안녕하세요
+            <img src="\static\images\doctorM.png" id="chat_hello"></img></h2>
+            <h4>위담한방병원 입니다.</h4>
+            <h6>세계 최고의 의료진들과 함께하는 위담한방병원 입니다.
+                24시간 언제든지 모르는 부분을 해결해줄 수 있습니다.
+                궁금하신게 있으시다면 언제든지 물어보세요!
+                오늘도 즐거운 하루 보내세요^^
+            </h6>
+            <br>
+        </div>
+        <div class="menu" id="main2">
+            <div class="">
+                <div class="list_with_border">
+                    <div class="list-header">
+                        <h6>위담한방병원</h6>
+                    </div>
+                    <div class="lists">
+                            <ul>
+                                <li><a href="http://weedahm.tistory.com/">한방병원 내과</a></li>
+                                <li><a href="http://weedahm.com/main/main.php">강남점</a></li>
+                                <li><a href="http://weedahm.com/wee/wee01/">상담문의</a></li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="">
+                <div class="list_with_border">
+                    <div class="list-header">
+                        <h6>위담한방병원 시스템</h6>
+                    </div>
+                    <div class="lists">
+                            <ul>
+                                <li><a href="example.com">온톨로지</a></li>
+                                <li><a href="example.com">인공지능</a></li>
+                                <li><a href="example.com">한방의료</a></li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- <p class="list">위담한방병원 시스템</p>
+            <div class="lists">
+                <ul>
+                    <li><a href="example.com">온톨로지</a></li>
+                    <li><a href="example.com">인공지능</a></li>
+                    <li><a href="example.com">한방의료</a></li>
+                </ul>
+            </div> -->
+            <div class="">
+                    <div class="list_with_border">
+                        <div class="list-header">
+                            <h6>프로그램 사용설명서</h6>
+                        </div>
+                        <div class="lists">
+                                <ul>
+                                    <li><a href="example.com">진단</a></li>
+                                    <li><a href="example.com">처방</a></li>
+                                    <li><a href="example.com">바디차트</a></li>
+                                </ul>
+                        </div>
+                    </div>
+            </div>
+            <br>
+            <div class="">
+                    <div class="list_with_border">
+                        <div class="list-header">
+                            <h6>질문하기</h6>
+                        </div>
+                        <div class="lists">
+                            <ul>
+                                <li><a href="example.com">자주하는 질문</a></li>
+                                <li><a href="example.com">직접 질문하기</a></li>
+                                <li><a href="example.com">그 외</a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <input type="button" class="btn btn-info btn-custom" name="" value="문의하기">
+          </div>
+        </div>
+    <!-- <div class="circle" id="chatbot_btn1"> -->
+        <!-- <i class="fas fa-comment-alt"></i> -->
+    <!-- </div> -->
+    <!-- <div class="redCircle" id="chatbot_btn2">
+    </div> -->
+    </div>
+</div>
+
+<div class="fixed">
+        <!-- <div class="circle" id="chatbot_btn1">
+        <img src="\static\images\chat3.png" id="chat_img"></img>
+        </div>
+
+        <div class="circle" id="chatbot_btn1">
+        <img src="\static\images\cancel1.png" id="chat_img2"></img>
+        </div> -->
+
+        <div class="" id="chatbot_btn1">
+        <img src="\static\images\chat1.png" id="chat_img1"></img>
+        </div>
+</div>
+
+<!-- <img id="my_image" src="\static\images\chat1.png"></img> -->

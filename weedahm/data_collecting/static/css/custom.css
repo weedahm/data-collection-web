@@ -9,6 +9,7 @@ html {
 }
 
 /* common */
+
 .box_with_border {
   padding: 10px;
   background: #fff;
@@ -27,9 +28,12 @@ html {
 .section-header-text {
   float: left;
   font-size: 1.5rem;
+  font-weight: bold;
+  color: #00968D;
 }
 
 /* header */
+
 #header {
   height: 140px;
   border-bottom: 1px solid #d1d8e4;
@@ -39,7 +43,7 @@ html {
 .inner_header {
   position: relative;
   margin: 0 auto;
-  width: 1500px;
+  width: 1420px;
   height: 100%;
 }
 
@@ -52,9 +56,14 @@ html {
   width: 100%;
 }
 
+.header-menu {
+  float: right;
+}
+
 /* end header */
 
 /* main */
+
 #container {
   margin: 0 auto;
   padding: 8px 0;
@@ -74,9 +83,8 @@ html {
 }
 
 /* layout */
-.layout-content-top {
 
-}
+.layout-content-top {}
 
 .layout-content-second {
   position: relative;
@@ -91,13 +99,28 @@ html {
   width: 100%;
   padding-top: 8px;
 }
+
 /* snb */
+
 /* patient search */
+
 .section-search {
   padding-top: 8px;
 }
 
+/* patient list */
+
+.layout-content-list {
+  padding-top: 12px;
+  overflow-y: scroll;
+}
+
+.list-patient {
+  height: 500px;
+}
+
 /* basic information */
+
 .form-row.basic-information-row {
   margin: 0px;
   display: block;
@@ -116,6 +139,7 @@ html {
 }
 
 /* bodychart */
+
 .layout-content-bodychart {
   float: left;
   width: 740px;
@@ -148,6 +172,7 @@ html {
 }
 
 /* eav */
+
 .layout-content-eav {
   position: relative;
   float: right;
@@ -163,35 +188,42 @@ html {
 }
 
 /* tongue */
+
 .layout-content-tongue {
   position: relative;
   float: left;
   width: 740px;
   height: 100%;
 }
+
 p.tongue-form-category {
   font-weight: bold;
   padding: 0px;
   margin: 0px;
 }
+
 .tongue-title-section-radio {
   float: right;
   margin-top: 8px;
 }
+
 .tongue-panel {
   padding-top: 8px;
   padding-left: 8px;
 }
+
 .tongue-detail-form {
   padding-top: 4px;
   padding-left: 16px;
   padding-bottom: 4px;
 }
+
 .form-check-label {
   padding-right: 5px;
 }
 
 /* comment */
+
 .layout-content-comment {
   position: relative;
   float: right;
@@ -200,16 +232,32 @@ p.tongue-form-category {
 }
 
 /* prescription */
+
 .layout-content-prescription {
   width: 1080px;
   padding-top: 8px;
 }
 
-.section-prescription-table {
+.section-prescription-form {
   padding-top: 8px;
 }
 
+.pre-table-scroll {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  overflow-y: scroll;
+}
+
+.pre-table {
+  height: 300px;
+}
+
+.close span {
+  font-size: 18px;
+}
+
 /* footer */
+
 #footer {
   margin-top: 16px;
   border-top: 1px solid #e3e7ee;
@@ -258,4 +306,157 @@ p.footer {
 .comment-panel {
   height: 285px;
   padding: 8px 2px;
+}
+
+/* custom chatbot layout */
+.fixed {
+  position: fixed;
+  bottom: 13px;
+  right: 5px;
+  /* background-color: yellow; */
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border: 30px solid #00968D;
+  border-radius: 50%;
+}
+
+.redCircle {
+  width: 60px;
+  height: 60px;
+  border: 30px solid rgb(247, 61, 28);
+  border-radius: 50%;
+}
+
+
+
+/* custom scroll bar */
+
+.scrollbar {
+  margin-left: 30px;
+  float: left;
+  height: 300px;
+  width: 65px;
+  background: #fff;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+}
+
+.force-overflow {
+  min-height: 450px;
+}
+
+.scrollbar-primary::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #4285F4;
+}
+
+.scrollbar-danger::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.scrollbar-danger::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-danger::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #ff3547;
+}
+
+.scrollbar-warning::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.scrollbar-warning::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-warning::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #FF8800;
+}
+
+.scrollbar-success::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.scrollbar-success::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-success::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #00C851;
+}
+
+.scrollbar-info::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.scrollbar-info::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-info::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #33b5e5;
+}
+
+.scrollbar-default::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.scrollbar-default::-webkit-scrollbar {
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-default::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #00968D;
+}
+
+.scrollbar-secondary::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.scrollbar-secondary::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-secondary::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #aa66cc;
 }

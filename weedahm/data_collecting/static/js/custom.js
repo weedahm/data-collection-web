@@ -1,3 +1,13 @@
+function get_table_row(medicine, gram) {
+    var tbl = '';
+    tbl += '<tr class="prescriptions">';
+    tbl += '<td style="width: 50%;" value="' + medicine + '">' + medicine + '</td>'
+    tbl += '<td class="dose" style="width: 25%;" value="' + gram + '">' + gram + '</td>'
+    tbl += '<td style="width: 25%;"><button type="button" class="close"><span class="fa fa-close"></span></button></td>'
+    tbl += '</tr>'
+    return tbl
+}
+
 function init_datatimepicker() {
     $('.input-daterange').datepicker({
         format: "yyyy/mm/dd",
@@ -5,448 +15,390 @@ function init_datatimepicker() {
     });
 }
 
-
-function onlyNumber(event){
-    event = event || window.event;
-    var keyID = (event.which) ? event.which : event.keyCode;
-    // console.log(key)
-    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
-        return;
-    else
-        return false;
-}
- 
-function removeChar(event) {
-    event = event || window.event;
-    var keyID = (event.which) ? event.which : event.keyCode;
-    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
-        return;
-    else
-        event.target.value = event.target.value.replace(/[^0-9]/g, "");
-}
-
 function init_vaild_check() {
-    $("#input-age").on("change paste keyup", function() {
+    $("#input-chart-id").on("change paste keyup", function () {
+        var set_chart = function (entry) {
+            for (const [key, value] of Object.entries(entry)) {
+                var target = $('[name=' + key + ']')
+                if (target[0].type == 'text') {
+                    target[0].value = value;
+                } else if (target[0].type == 'checkbox') {
+                    target[0].checked = value
+                } else if (target[0].type == 'radio') {
+                    if (target[0].value == value) {
+                        target[0].checked = true
+                    } else if (target[1].value == value) {
+                        target[1].checked = true
+                    }
+                } else {
+                    target.val(value)
+                }
+            }
+        }
+        var set_prescription = function (entry) {
+            $('.prescription').find('tbody').empty()
+            for (const [key, value] of Object.entries(entry)) {
+                var tokens = key.split("_")
+                switch (tokens[0]) {
+                    case '처방1':
+                        $tbody
+                        $('.prescription.first').find('tbody').append(get_table_row(tokens[1], value))
+                        break;
+                    case '처방2':
+                        $('.prescription.second').find('tbody').append(get_table_row(tokens[1], value))
+                        break;
+                    case '처방3':
+                        $('.prescription.third').find('tbody').append(get_table_row(tokens[1], value))
+                        break;
+                }
+            }
+            var $tbody = $('.prescription').find('tbody')
+            $tbody.find('button.close').on('click', function () {
+                $(this).closest('tr').remove()
+                sumDoses()
+            })
+            sumDoses()
+        }
+        var chart_id = $(this).val()
+        if (chart_id.length == 8) {
+            $.ajax({
+                url: '/patient/' + chart_id,
+                type: "GET",
+                dataType: "json"
+            }).done(function (response) {
+                if (response.basic_info != null) {
+                    set_chart(response.basic_info)
+                }
+                if (response.bodychart != null) {
+                    set_chart(response.bodychart)
+                }
+                if (response.eav != null) {
+                    set_chart(response.eav)
+                }
+                if (response.tongue != null) {
+                    set_chart(response.tongue)
+                }
+                if (response.prescription != null) {
+                    set_prescription(response.prescription)
+                }
+                if ($.isEmptyObject(response)) {
+                    $('.prescription').find('tbody').empty()
+                    $('#patient-data-submit')[0].reset()
+                    $('#input-chart-id').val(chart_id)
+                }
+            }).always(function (response) {
+                // console.log(response)
+            });
+        }
+    });
+
+    $("#input-age").on("change paste keyup", function () {
         var age = $(this).val()
         if (age > 150 || age < 0) {
             $(this).addClass('is-invalid');
         } else {
             $(this).removeClass('is-invalid');
         }
-     });
+    });
 
-    $("#input-height").on("change paste keyup", function(){
-         var height = $(this).val()
-         if(height > 300 || height < 0) {
-             $(this).addClass('is-invalid');
-         } else {
-             $(this).removeClass('is-invalid');
-         }
-     });
-
-     $("#input-weight").on("change paste keyup", function(){
-         var weight = $(this).val()
-         if(weight > 300 || weight < 0) {
-             $(this).addClass('is-invalid');
-         } else {
-             $(this).removeClass('is-invalid');
-         }
-     });
-
-     $("#input-blood-high").on("change paste keyup", function(){
-         var blood = $(this).val()
-         if(blood > 200 ) {
-             $(this).addClass('is-invalid');
-         } else {
-             $(this).removeClass('is-invalid');
-         }
-     });
-
-     $("#input-blood-row").on("change paste keyup", function(){
-         var blood = $(this).val()
-         if(blood < 50) {
-             $(this).addClass('is-invalid');
-         } else {
-             $(this).removeClass('is-invalid');
-         }
-     });
-
-    $(".test").on("change paste keyup", function(){
-        var a  = $(this).val()
-        if(a > 6) {
+    $("#input-height").on("change paste keyup", function () {
+        var height = $(this).val()
+        if (height > 300 || height < 0) {
             $(this).addClass('is-invalid');
         } else {
             $(this).removeClass('is-invalid');
         }
     });
 
-    // $(".test1").on("change paste keyup", function(){
-    //     var a,b  = $(this).val()
-    //     if(a > 160 && b > 95 ) {
-    //         $(this).addClass('is-invalid');
-    //     } else {
-    //         $(this).removeClass('is-invalid');
-    //     }
-    // });
-
-    $(".test2").on("change paste keyup", function(){
-        var a  = $(this).val()
-        if(a > 100 || a < 0) {
+    $("#input-weight").on("change paste keyup", function () {
+        var weight = $(this).val()
+        if (weight > 300 || weight < 0) {
             $(this).addClass('is-invalid');
         } else {
             $(this).removeClass('is-invalid');
+        }
+    });
+
+    $("#input-blood-high").on("change paste keyup", function () {
+        var blood = $(this).val()
+        if (blood > 200) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $("#input-blood-low").on("change paste keyup", function () {
+        var blood = $(this).val()
+        if (blood < 50) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $(".bodychart").on("change paste keyup", function () {
+        var a = $(this).val()
+        if (a > 6) {
+            $(this).addClass('is-invalid');
+            $(this).css("color", "#BF091C")
+        } else {
+            $(this).removeClass('is-invalid');
+            $(this).css("color", "")
         }
     });
 }
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function init_jq_post() {
+    $("#patient-data-submit").submit(function (event) {
+        event.preventDefault();
+        $('#submit-btn').val("저장 중")
+        $('#submit-btn').removeClass('btn-info').addClass('btn-secondary disabled')
+        $('#submit-btn').children(".fa").addClass('fa-refresh fa-spin')
+        var job_done = function () {
+            $('#submit-btn').val("저장하기")
+            $('#submit-btn').removeClass('btn-primary btn-danger disabled').addClass('btn-info')
+            $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
+        }
+
+        var $form = $(this);
+        url = $form.attr("action");
+
+        var chart_id = $form.find("input[name='input-chart-id']").val();
+
+        var basic_info = {}
+        $.each($('.basic_info'), function (_, value) {
+            basic_info[value.name] = value.value
+        })
+
+        var bodychart = {}
+        $.each($('.bodychart'), function (_, value) {
+            if (value.type == 'text') {
+                bodychart[value.name] = value.value
+            } else if (value.type == 'checkbox') {
+                bodychart[value.name] = value.checked
+            } else if (value.type == 'radio') {
+                if (value.checked) {
+                    bodychart[value.name] = value.value
+                }
+            }
+        })
+
+        var eav = {}
+        $.each($('.eav'), function (_, value) {
+            eav[value.name] = value.value
+        })
+
+        var tongue = {}
+        $.each($('.tongue'), function (_, value) {
+            if (value.type == 'checkbox') {
+                tongue[value.name] = value.checked
+            } else if (value.type == 'radio') {
+                if (value.checked) {
+                    tongue[value.name] = value.value
+                }
+            }
+        })
+
+        var prescription = {}
+        $.each($('.prescriptions'), function (_, value) {
+            var category = $(this).closest('.prescription').find('h5').attr('value')
+            var name = value.children.item(0).innerHTML
+            var gram = value.children.item(1).innerHTML
+            prescription[category + '_' + name] = gram
+        })
+
+        var payload = JSON.stringify({
+            chart_id: chart_id,
+            basic_info: basic_info,
+            bodychart: bodychart,
+            eav: eav,
+            tongue: tongue,
+            prescription: prescription
+        });
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            data: payload,
+        }).done(function (response) {
+            $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-primary')
+            $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
+            $('#submit-btn').val("저장성공!")
+        }).fail(function (error) {
+            $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-danger')
+            $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
+            $('#submit-btn').val("저장실패!")
+        }).always(function () {
+            setTimeout(job_done, 1500)
+            init_get_patient_list()
+        });
+    });
+}
+
+function init_get_patient_list() {
+    var $list = $(document).find('.list-patient')
+    $list.empty()
+    $.ajax({
+        url: '/patients/',
+        type: "GET",
+        dataType: "json"
+    }).done(function (response) {
+        $.each(response, function (_, value) {
+            $.each(value, function (_, val) {
+                var a_list = document.createElement('a')
+                a_list.className = 'list-group-item list-group-item-action'
+                a_list.setAttribute('role', 'tab')
+                a_list.setAttribute('href', val)
+                a_list.setAttribute('data-toggle', 'list')
+                a_list.textContent = val
+                $list.append(a_list)
+            })
+        })
+        $('#patientList a').on('click', function (e) {
+            e.preventDefault()
+            $('#patient-data-submit')[0].reset()
+            $('#input-chart-id').val($(this).attr('href'))
+            $('#input-chart-id').trigger('change')
+        })
+    }).fail(function (response) {
+        console.log("fail")
+    })
+}
+
+function init_events() {
+    $('#delete-btn').on('click', function () {
+        var chart_id = $('#input-chart-id').val()
+        $('#deleteModalLabel').html('차트번호: ' + chart_id)
+        $('#deleteId').val(chart_id)
+    });
+
+    $('.pre-btn').on('click', function () {
+        var $prescription = $(this).closest('.prescription')
+        var $tbody = $prescription.find('tbody')
+        var medicine = $(this).closest('.form-row').find('select').val()
+        var gram = $(this).closest('.form-row').find('input').val()
+        if (gram == '') {
+            $(this).closest('.form-row').find('input').addClass('is-invalid')
+        } else {
+            $(this).closest('.form-row').find('input').removeClass('is-invalid')
+            $tbody.append(get_table_row(medicine, gram))
+            $tbody.find('button.close').on('click', function () {
+                $(this).closest('tr').remove()
+                sumDoses()
+            })
+            sumDoses()
+        }
+    })
+}
+
+function sumDoses() {
+    $.each($('.prescription'), function () {
+        var currentDose = 0;
+        $sum = $(this).find('span.sum')
+        $doses = $(this).find('td.dose')
+        $.each($doses, function (_, value) {
+            currentDose += Number(value.innerHTML)
+        })
+        $sum.html(currentDose)
+    })
+    // $sum = $target.find('span.sum')
+    // $doses = $target.find('td.dose')
+    // $.each($doses, function (_, value) {
+    //     sum += Number(value.innerHTML)
+    // })
+    // $sum.html(sum)
+}
+
+function init_chatbot_btn(){
+    // var click_function = function(){
+    //     console.log("내가 클릭됐다")
+    // }
+    var click_function = function(){
+        $(this).removeClass("circle")
+        $(this).addClass("redCircle")
+        console.log("내가 클릭됐다")
+    }
+    // var unclick_function = function(){
+    //     $(this).removeClass("redcircle")
+    //     $(this).addClass("Circle")
+    // }
+    // var hoverIn = function(){
+    //     $(this).removeClass("circle")
+    //     $(this).addClass("redCircle")
+    // }
+    // var hoverOut = function(){
+    //     $(this).removeClass("redCircle")
+    //     $(this).addClass("circle")
+    // }
+    $('#chatbot_btn').on('click',click_function)
+    // $('#chatbot_btn').on('click',unclick_function)
+    // $('#chatbot_btn').hover(hoverIn, hoverOut)
+}
+function init_circleHide(){
+    $("#chatbot_btn1").click(function(){
+        // $(".chatbot").fadeToggle(500);
+        $(".chatbot").toggle(500);
+        // $(this).removeClass("circle")
+        // $(this).addClass("redCircle")
+        // console.log("내가 클릭됐다")
+    })
+
+    // $("#chatbot_btn1").click(function(){
+    //     $(".chatbot").show(1000);
+    //     $(this).removeClass("redcircle")
+    //     $(this).addClass("circle")
+    // })
+}
+
+
+//여기 다시한번 확인해보기*****************************
+// $("#chatbot_btn1").click(function(){
+//     $("#chat_img1").attr("src","\static\images\chat2.png")
+// })
+//***************************************************
+
+
+// $("#my_image").on({
+//     'click': function(){ 
+//         $("#my_image").attr('src','\static\images\chat2.png'); 
+//     }
+// });
+// function init_circleShow(){
+//     $("#chatbot_btn1").click(function(){
+//         $(".chatbot").show(1000);
+//         $(this).removeClass("redcircle")
+//         $(this).addClass("circle")
+//     })
+// }
+
 $(document).ready(function ($) {
     init_datatimepicker();
     init_vaild_check();
-
-    var ajax_data = [{
-            pName: "첩약1",
-            amount: "0.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약2",
-            amount: "7.6000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약3",
-            amount: "14.0000",
-            numOfTime: "2",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약4",
-            amount: "8.5000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약5",
-            amount: "13.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약6",
-            amount: "1.5000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약7",
-            amount: "5.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약8",
-            amount: "38.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약9",
-            amount: "14.0000",
-            numOfTime: "2",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약10",
-            amount: "2.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약11",
-            amount: "12.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약12",
-            amount: "7.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약13",
-            amount: "9.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약14",
-            amount: "2.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약15",
-            amount: "1.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약16",
-            amount: "1.7000",
-            numOfTime: "2",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약17",
-            amount: "16.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약18",
-            amount: "1.0000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-        {
-            pName: "첩약19",
-            amount: "1.8000",
-            numOfTime: "1",
-            days: "1",
-            text: "none"
-        },
-
-    ]
-
-
-
-    var random_id = function () {
-        var id_num = Math.random().toString(9).substr(2, 3);
-        var id_str = Math.random().toString(36).substr(2);
-
-        return id_num + id_str;
-    }
-
-
-    //--->create data table > start
-    var tbl = '';
-    tbl += '<table class="table table-hover table-striped">'
-
-    //--->create table header > start
-    tbl += '<thead>';
-    tbl += '<tr>';
-    tbl += '<th>처방명칭</th>';
-    tbl += '<th>용량</th>';
-    tbl += '<th>횟수</th>';
-    tbl += '<th>일수</th>';
-    tbl += '<th>혈명/첩/팩</th>';
-    tbl += '</tr>';
-    tbl += '</thead>';
-    //--->create table header > end
-
-
-    //--->create table body > start
-    tbl += '<tbody>';
-
-    //--->create table body rows > start
-    $.each(ajax_data, function (index, val) {
-        //you can replace with your database row id
-        var row_id = random_id();
-
-        //loop through ajax row data
-        tbl += '<tr row_id="' + row_id + '">';
-        tbl += '<td scope="col"><div class="row_data" edit_type="click" col_name="pName">' + val['pName'] + '</div></td>';
-        tbl += '<td><div class="row_data" edit_type="click" col_name="amount">' + val['amount'] + '</div></td>';
-        tbl += '<td><div class="row_data" edit_type="click" col_name="numOfTime">' + val['numOfTime'] + '</div></td>';
-        tbl += '<td><div class="row_data" edit_type="click" col_name="days">' + val['days'] + '</div></td>';
-        tbl += '<td><div class="row_data" edit_type="click" col_name="text">' + val['text'] + '</div></td>';
-        //--->edit options > end
-        tbl += '</tr>';
-    });
-
-    //--->create table body rows > end
-
-    tbl += '</tbody>';
-    //--->create table body > end
-
-    tbl += '</table>'
-    //--->create data table > end
-
-    //out put table data
-    $(document).find('.section-prescription-table').html(tbl);
-
-    $(document).find('.btn_save').hide();
-    $(document).find('.btn_cancel').hide();
-
-
-    //--->make div editable > start
-    $(document).on('click', '.row_data', function (event) {
-        event.preventDefault();
-
-        if ($(this).attr('edit_type') == 'button') {
-            return false;
-        }
-
-        //make div editable
-        $(this).closest('div').attr('contenteditable', 'true');
-        //add bg css
-
-        $(this).focus();
-    })
-    //--->make div editable > end
-
-
-    //--->save single field data > start
-    $(document).on('focusout', '.row_data', function (event) {
-        event.preventDefault();
-
-        if ($(this).attr('edit_type') == 'button') {
-            return false;
-        }
-
-        var row_id = $(this).closest('tr').attr('row_id');
-
-        var row_div = $(this)
-            .removeClass('bg-warning') //add bg css
-            .css('padding', '')
-
-        var col_name = row_div.attr('col_name');
-        var col_val = row_div.html();
-
-        var arr = {};
-        arr[col_name] = col_val;
-
-        //use the "arr"	object for your ajax call
-        $.extend(arr, {
-            row_id: row_id
-        });
-
-        //out put to show
-        $('.post_msg').html('<pre class="bg-success">' + JSON.stringify(arr, null, 2) + '</pre>');
-
-    })
-    //--->save single field data > end
-
-
-    //--->button > edit > start
-    $(document).on('click', '.btn_edit', function (event) {
-        event.preventDefault();
-        var tbl_row = $(this).closest('tr');
-
-        var row_id = tbl_row.attr('row_id');
-
-        tbl_row.find('.btn_save').show();
-        tbl_row.find('.btn_cancel').show();
-
-        //hide edit button
-        tbl_row.find('.btn_edit').hide();
-
-        //make the whole row editable
-        tbl_row.find('.row_data')
-            .attr('contenteditable', 'true')
-            .attr('edit_type', 'button')
-            .css('padding', '3px')
-
-        //--->add the original entry > start
-        tbl_row.find('.row_data').each(function (index, val) {
-            //this will help in case user decided to click on cancel button
-            $(this).attr('original_entry', $(this).html());
-        });
-        //--->add the original entry > end
-
-    });
-    //--->button > edit > end
-
-
-    //--->button > cancel > start
-    $(document).on('click', '.btn_cancel', function (event) {
-        event.preventDefault();
-
-        var tbl_row = $(this).closest('tr');
-
-        var row_id = tbl_row.attr('row_id');
-
-        //hide save and cacel buttons
-        tbl_row.find('.btn_save').hide();
-        tbl_row.find('.btn_cancel').hide();
-
-        //show edit button
-        tbl_row.find('.btn_edit').show();
-
-        //make the whole row editable
-        tbl_row.find('.row_data')
-            .attr('edit_type', 'click')
-            .removeClass('bg-warning')
-            .css('padding', '')
-
-        tbl_row.find('.row_data').each(function (index, val) {
-            $(this).html($(this).attr('original_entry'));
-        });
-    });
-    //--->button > cancel > end
-
-
-    //--->save whole row entery > start
-    $(document).on('click', '.btn_save', function (event) {
-        event.preventDefault();
-        var tbl_row = $(this).closest('tr');
-
-        var row_id = tbl_row.attr('row_id');
-
-
-        //hide save and cacel buttons
-        tbl_row.find('.btn_save').hide();
-        tbl_row.find('.btn_cancel').hide();
-
-        //show edit button
-        tbl_row.find('.btn_edit').show();
-
-
-        //make the whole row editable
-        tbl_row.find('.row_data')
-            .attr('edit_type', 'click')
-            .removeClass('bg-warning')
-            .css('padding', '')
-
-        //--->get row data > start
-        var arr = {};
-        tbl_row.find('.row_data').each(function (index, val) {
-            var col_name = $(this).attr('col_name');
-            var col_val = $(this).html();
-            arr[col_name] = col_val;
-        });
-        //--->get row data > end
-
-        //use the "arr"	object for your ajax call
-        $.extend(arr, {
-            row_id: row_id
-        });
-
-        //out put to show
-        $('.post_msg').html('<pre class="bg-success">' + JSON.stringify(arr, null, 2) + '</pre>')
-
-
-    });
-    //--->save whole row entery > end
+    init_jq_post();
+    init_get_patient_list();
+    init_events();
+    init_chatbot_btn();
+    // init_circleShow();
+    init_circleHide();
 });
