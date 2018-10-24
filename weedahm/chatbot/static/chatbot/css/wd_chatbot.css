@@ -1,0 +1,83 @@
+h2,
+h4 {
+    text-align: center;
+}
+
+/* .intro{
+        background-color: #00968D;
+      } */
+
+.intro {
+    padding: 0px 40px 0px 40px;
+    /* font-family: 'Jeju Gothic', sans-serif; */
+    font-family: 'Hanna', sans-serif;
+    /* font-family: 'Jeju Hallasan', cursive; */
+}
+
+.menu {
+    padding: 20px 30px 20px 30px;
+}
+
+#main {
+    max-width: 380px;
+    margin: 0 auto;
+    background-color: #00968D;
+}
+
+#main2 {
+    max-width: 380px;
+    margin: auto;
+    background-color: #e3e7ee;
+}
+
+.chatbot {
+    position: relative;
+    bottom: 75px;
+    box-shadow: 0px 0px 9px 5px rgb(197, 193, 193);
+}
+
+.list-header {
+    position: relative;
+    height: 30px;
+    border-bottom: 1px solid #00968D;
+    padding: 0px 10px;
+}
+
+.lists {
+    padding: 10px 0px 0px 0px;
+}
+
+.list_with_border {
+    padding: 10px;
+    background: #fff;
+    box-shadow: 5px 5px 20px 0px rgb(197, 193, 193);
+    border-radius: 15px;
+}
+
+#chat_img {
+    position: relative;
+    bottom: 18px;
+    right: 20px;
+    height: 40px;
+    width: auto;
+}
+
+#chat_img1 {
+    position: relative;
+    height: 60px;
+    width: auto;
+}
+
+#chat_img2 {
+    position: relative;
+    bottom: 14px;
+    right: 15px;
+    height: 30px;
+    width: auto;
+}
+
+#chat_hello {
+    position: relative;
+    height: 45px;
+    width: auto;
+}

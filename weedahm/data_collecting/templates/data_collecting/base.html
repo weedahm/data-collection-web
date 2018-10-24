@@ -20,7 +20,7 @@
     <div id="wrap">
         <div id="header">
             <div class="inner_header">
-                {% include "data_collecting/header.html" %}{% block userinfo %} {% endblock userinfo %}
+                {% include "data_collecting/header.html" %}
             </div>
         </div>
         <div id="container">{% block content %} {% endblock content %}</div>
@@ -34,10 +34,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.ko.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <script src="/static/js/custom.js"></script>
+    {% block scripts %}{% endblock scripts %}
 </body>
 
 </html>

@@ -12,6 +12,9 @@ from .models import Patient
 import json
 
 def login(request):
+    if request.user.is_anonymous:
+        context = { 'is_anonymous': True }
+        return render(request, 'data_collecting/login.html', context=context)
     return render(request, 'data_collecting/login.html')
 
 def authenticate(request):
@@ -30,7 +33,9 @@ def logout(request):
 
 @login_required(login_url='/login')
 def index(request):
-    return render(request, 'data_collecting/main.html')
+    current_user = request.user
+    context = { 'user': current_user }
+    return render(request, 'data_collecting/main.html', context=context)
 
 @login_required(login_url='/login')
 def patient(request, chart_id):

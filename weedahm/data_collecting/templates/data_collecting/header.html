@@ -1,3 +1,12 @@
 <div class="logo">
     <img src="/static/images/logo.png">
 </div>
+{% if is_anonymous %}
+{% else %}
+{% if user %}
+<div class="header-menu">
+    <span>환영합니다! {{ user.username }}님</span>
+    <a class="btn btn-secondary btn-sm" style="margin-left: 1rem" href="/logout">로그아웃</a>
+</div>
+{% endif %}
+{% endif %}

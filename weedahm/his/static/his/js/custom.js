@@ -1,10 +1,12 @@
 function init_events() {
-    $('.wd_ab').hover(
+    $('.header__menu__item').hover(
         function () {
-            $(this).css("border-bottom", "2px solid #45AB41");
+            // $(this).css("border-bottom", "2px solid #45AB41");
+            $(this).addClass("header__menu__item--active-on")
         },
         function () {
-            $(this).css("border-bottom", "0");
+            // $(this).css("border-bottom", "0");
+            $(this).removeClass("header__menu__item--active-on")
         }
     )
 }

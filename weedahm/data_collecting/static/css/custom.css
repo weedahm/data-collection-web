@@ -62,6 +62,9 @@ html {
   position: absolute;
   right: 0px;
   bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* end header */
