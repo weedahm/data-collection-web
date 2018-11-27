@@ -35,12 +35,12 @@
                 <div class="form-inline">
                     <div class="basic-information-group">
                         <label for="input-chart-id">* 차트번호</label>
-                        <input id="input-chart-id" name="input-chart-id" type="text" class="form-control basic-information-input"
+                        <input id="input-chart-id" name="id" type="text" class="form-control basic-information-input"
                             style="width: 120px;" maxlength="8" required>
                     </div>
                     <div class="basic-information-group">
                         <label for="input-gender">성별</label>
-                        <select id="input-gender" name="input-gender" class="form-control basic_info">
+                        <select id="input-gender" name="gender" class="form-control basic_info">
                             <option value="W" selected>여</option>
                             <option value="M">남</option>
                         </select>
@@ -48,7 +48,7 @@
                     <div class="basic-information-group">
                         <label for="input-age">* 나이</label>
                         <div class="input-group">
-                            <input id="input-age" name="input-age" type="text" class="basic_info form-control basic-information-input"
+                            <input id="input-age" name="age" type="text" class="basic_info form-control basic-information-input"
                                 style="width: 70px;" maxlength="3" required>
                             <div class="input-group-prepend">
                                 <div class="input-group-text custom-prepend">세</div>
@@ -61,7 +61,7 @@
                     <div class="basic-information-group">
                         <label for="input-height">키</label>
                         <div class="input-group">
-                            <input id="input-height" name="input-height" type="text" class="basic_info form-control basic-information-input"
+                            <input id="input-height" name="height" type="text" class="basic_info form-control basic-information-input"
                                 style="width: 70px;" maxlength="3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text custom-prepend">cm</div>
@@ -75,7 +75,7 @@
                     <div class="basic-information-group">
                         <label for="input-weight">몸무게</label>
                         <div class="input-group">
-                            <input id="input-weight" name="input-weight" type="text" class="basic_info form-control basic-information-input"
+                            <input id="input-weight" name="weight" type="text" class="basic_info form-control basic-information-input"
                                 style="width: 70px;" maxlength="3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text custom-prepend">kg</div>
@@ -92,7 +92,7 @@
                     <div class="basic-information-group">
                         <label for="input-blood-high">수축기</label>
                         <input type="text" class="basic_info form-control basic-information-input" id="input-blood-high"
-                            name="input-blood-high" style="width: 70px;" maxlength="3">
+                            name="blood_high" style="width: 70px;" maxlength="3">
                         <div class="invalid-feedback">
                             정확한 혈압을 입력해주세요.
                         </div>
@@ -100,7 +100,7 @@
                     <div class="basic-information-group">
                         <label for="input-blood-low">이완기</label>
                         <input type="text" class="basic_info form-control basic-information-input" id="input-blood-low"
-                            name="input-blood-low" style="width: 70px;" maxlength="3">
+                            name="blood_low" style="width: 70px;" maxlength="3">
                         <div class="invalid-feedback">
                             정확한 혈압을 입력해주세요.
                         </div>

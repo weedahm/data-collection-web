@@ -82,3 +82,9 @@ def delete(request):
     chart_id = request.POST['deleteId']
     Patient.objects.filter(chart_id=chart_id).delete()
     return HttpResponseRedirect(reverse('data_collecting:index'))
+
+@login_required(login_url='/ai_prescription')
+def ai_prescription(request):
+    current_user = request.user
+    context = { 'user': current_user }
+    return render(request, 'data_collecting/ai_prescription.html', context=context)

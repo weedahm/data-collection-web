@@ -43,25 +43,54 @@ html {
 }
 
 .inner_header {
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
   width: 1420px;
   height: 100%;
 }
 
 .logo {
-  position: absolute;
-  top: 20%;
+  /* position: absolute;
+  top: 20%; */
+  flex: 0 0 auto;
 }
 
 .logo img {
   width: 100%;
 }
 
-.header-menu {
-  position: absolute;
-  right: 0px;
-  bottom: 10px;
+.header__menu {
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
+  margin: 0px 50px 0px 50px;
+}
+
+.header__menu__item {
+  margin: 0px 20px 0px 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.header__menu__item:hover {
+  font-weight: bold;
+}
+
+.non-active {
+  /* pointer-events: none; */
+  /* cursor: default; */
+  text-decoration: none;
+  color: black;
+}
+
+.header__logout {
+  flex: 0 0 auto;
+  /* position: absolute; */
+  /* right: 0px;
+  bottom: 10px; */
   display: flex;
   align-items: center;
   justify-content: space-between;

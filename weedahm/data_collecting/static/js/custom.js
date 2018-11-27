@@ -188,7 +188,7 @@ function init_jq_post() {
         var $form = $(this);
         url = $form.attr("action");
 
-        var chart_id = $form.find("input[name='input-chart-id']").val();
+        var chart_id = $form.find("input[name='id']").val();
 
         var basic_info = {}
         $.each($('.basic_info'), function (_, value) {

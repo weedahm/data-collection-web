@@ -11,5 +11,7 @@ urlpatterns = [
     path('submit', views.submit, name='submit'),
     path('delete', views.delete, name='delete'),
     path('patients/', views.patients, name='patients'),
-    path('patient/<str:chart_id>', views.patient, name='patient')
+    path('patient/<str:chart_id>', views.patient, name='patient'),
+
+    path('ai_prescription', views.ai_prescription, name='ai_prescription'),
 ]

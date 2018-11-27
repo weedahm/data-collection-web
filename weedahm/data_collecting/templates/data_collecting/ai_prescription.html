@@ -1,0 +1,171 @@
+{% extends "data_collecting/base.html" %}
+{% block stylesheets %}
+<link rel="stylesheet" href="/static/css/ai_prescription.css">
+{% endblock stylesheets %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.ko.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="/static/js/ai_prescription.js"></script>
+<!-- <script src="/static/js/custom.js"></script> -->
+{% endblock scripts %}
+
+{% block content %}
+<div class='content--wrapper'>
+    <div class='content__left'>
+        <div class='content__left__patient-list box_with_border'>
+            <div class="section-header">
+                <span class="section-header-text">환자 리스트</span>
+            </div>
+            <div class="content__left__patient-list__layout scrollbar-default">
+                <div class="force-overflow">
+                    <div id="patientList" class="list-patient list-group list-group-flush" id="list-tab" role="tablist"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='content__right'>
+        <div class="content__right__patient-info box_with_border">
+            <div class="content__right__patient-info__item">
+                <label for="input-chart-id">* 차트번호</label>
+                <input id="input-chart-id" class="form-control" style="max-width: 120px;" disabled>
+            </div>
+            <div class="content__right__patient-info__item">
+                <label for="input-gender">성별</label>
+                <select id="input-gender" class="form-control" disabled>
+                    <option value="W" selected>여</option>
+                    <option value="M">남</option>
+                </select>
+            </div>
+            <div class="content__right__patient-info__item">
+                <label for="input-age">* 나이</label>
+                <div class="input-group">
+                    <input id="input-age" class="form-control" style="max-width: 70px;" disabled>
+                    <div class="input-group-append">
+                        <span class="input-group-text">세</span>
+                    </div>
+                </div>
+            </div>
+            <div class="content__right__patient-info__item">
+                <label for="input-height">키</label>
+                <div class="input-group">
+                    <input id="input-height" class="form-control" style="max-width: 70px;" disabled>
+                    <div class="input-group-append">
+                        <div class="input-group-text">cm</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content__right__patient-info__item">
+                <label for="input-weight">몸무게</label>
+                <div class="input-group">
+                    <input id="input-weight" class="form-control" style="max-width: 70px;" disabled>
+                    <div class="input-group-append">
+                        <div class="input-group-text">kg</div>
+                    </div>
+                </div>
+
+            </div>
+            <span style="padding-top: 3px; margin-right: 16px;">혈압</span>
+            <div class="content__right__patient-info__item">
+                <label for="input-blood-high">수축기</label>
+                <input id="input-blood-high" class="form-control" style="max-width: 70px;" disabled>
+            </div>
+            <div class="content__right__patient-info__item">
+                <label for="input-blood-low">이완기</label>
+                <input id="input-blood-low" class="form-control" style="max-width: 70px;" disabled>
+            </div>
+
+            <div class="content__right__patient-info__btn">
+                <button class="btn btn-primary">
+                    인공지능 처방전
+                </button>
+            </div>
+        </div>
+        <div class='content__right__ai-point box_with_border'>
+            <div class="content__section-header">
+                <span class="section-header-text">AI 카테고리별 점수</span>
+                <button class="btn btn-secondary btn-sm" style="height: 28px; margin-top: 5px; margin-left:20px;">랜덤 점수 표기</button>
+            </div>
+            <div class="content__right__ai-point__layout">
+                <div class="content__right__ai-point__layout__chart-wrapper">
+                    <canvas class="content__right__ai-point__chart"></canvas>
+                </div>
+                <div class="content__right__ai-point__layout__discriptions">
+                    <div class="content__right__ai-point__layout__discriptions__item">
+                        <span class="content__right__ai-point__layout__discriptions__item__title">
+                            담적
+                            <span id="point-damzuk" class="content__right__ai-point__layout__discriptions__item__point">
+                                90
+                            </span>
+                            <span class="content__right__ai-point__layout__discriptions__item__appix">
+                                점
+                            </span>
+                        </span>
+                    </div>
+                    <div class="content__right__ai-point__layout__discriptions__item">
+                        <span class="content__right__ai-point__layout__discriptions__item__title">
+                            소화
+                            <span id="point-sohwa" class="content__right__ai-point__layout__discriptions__item__point">
+                                59
+                            </span>
+                            <span class="content__right__ai-point__layout__discriptions__item__appix">
+                                점
+                            </span>
+                        </span>
+                    </div>
+                    <div class="content__right__ai-point__layout__discriptions__item">
+                        <span class="content__right__ai-point__layout__discriptions__item__title">
+                            신경
+                            <span id="point-sinkyung" class="content__right__ai-point__layout__discriptions__item__point">
+                                40
+                            </span>
+                            <span class="content__right__ai-point__layout__discriptions__item__appix">
+                                점
+                            </span>
+                        </span>
+                    </div>
+                    <div class="content__right__ai-point__layout__discriptions__item">
+                        <span class="content__right__ai-point__layout__discriptions__item__title">
+                            순환
+                            <span id="point-soonhwan" class="content__right__ai-point__layout__discriptions__item__point">
+                                35
+                            </span>
+                            <span class="content__right__ai-point__layout__discriptions__item__appix">
+                                점
+                            </span>
+                        </span>
+                    </div>
+                    <div class="content__right__ai-point__layout__discriptions__item">
+                        <span class="content__right__ai-point__layout__discriptions__item__title">
+                            기타
+                            <span id="point-guitar" class="content__right__ai-point__layout__discriptions__item__point">
+                                78
+                            </span>
+                            <span class="content__right__ai-point__layout__discriptions__item__appix">
+                                점
+                            </span>
+                        </span>
+                    </div>
+                    <div class="content__right__ai-point__layout__discriptions__item">
+                        <span class="content__right__ai-point__layout__discriptions__item__title">
+                            특정
+                            <span id="point-tukjung" class="content__right__ai-point__layout__discriptions__item__point">
+                                66
+                            </span>
+                            <span class="content__right__ai-point__layout__discriptions__item__appix">
+                                점
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='content__right__ai-medicine box_with_border'>
+            <div class="content__section-header">
+                <span class="section-header-text">AI 추천 약재 처방</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
