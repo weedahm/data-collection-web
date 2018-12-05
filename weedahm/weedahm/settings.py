@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.10']
 INSTALLED_APPS = [
     'data_collecting.apps.DataCollectingConfig',
     'his.apps.HisConfig',
-    'chatbot.apps.ChatbotConfig',
+    # 'chatbot.apps.ChatbotConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    '/chatbot/static/'
-    '/his/static/',
-    '/data_collecting/static/',
+    # '/chatbot/static/'
+    # '/his/static/',
+    # '/data_collecting/static/',
 ]

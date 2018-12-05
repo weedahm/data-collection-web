@@ -20,6 +20,9 @@
 
 .content__left__patient-list {
     height: 500px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .content__left__patient-list__layout {
@@ -139,7 +142,58 @@
 
 .content__right__ai-medicine {
     flex: 0 0 auto;
-    margin-top: 10px;
 
+    display: flex;
+    flex-direction: column;
     height: 500px;
+    margin-top: 10px;
+}
+
+.content__right__ai-medicine__layout {
+    flex: 1 1 auto;
+    
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    /* display: inline; */
+    margin: 15px;
+}
+
+.content__right__ai-medicine__layout > * {
+    /* display: table-cell; */
+    width: 33.33%;
+}
+
+.content__right__ai-medicine__list {
+    flex: 1 1 auto;
+
+    border: 1px solid #dee3eb;
+    background-color: #f8f9fa;
+    margin-left: 8px;
+    margin-right: 8px;
+    overflow-y: scroll;
+}
+
+.content__right__ai-medicine__list:hover {
+    background-color: #f1f3f5;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    min-height: 60px;
+    align-items: center;
+}
+
+.content__right__ai-medicine__list__item--gram {
+    font-weight: bold;
+    color: #00968D;
+    font-size: 23px;
+}
+
+.content__right__ai-medicine__list__item--tag {
+    font-weight: bold;
+    color: #868e96;
+    font-size: 23px;
 }

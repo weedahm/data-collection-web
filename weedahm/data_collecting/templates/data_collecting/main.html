@@ -13,12 +13,6 @@
         <div class="section-header">
             <span class="section-header-text">환자 리스트</span>
         </div>
-        <!-- <div class="section-search">
-            <div class="input-daterange input-group">
-                <input type="text" class="form-control" name="start" />
-                <input type="text" class="form-control" name="end" />
-            </div>
-        </div> -->
         <div class="layout-content-list scrollbar-default">
             <div class="force-overflow">
                 <div id="patientList" class="list-patient list-group list-group-flush" id="list-tab" role="tablist"></div>
@@ -607,24 +601,38 @@
         </div>
 
         <div class="layout-content-third">
-            <div class="layout-content-tongue">
-                <div class="box_with_border">
-                    <div class="section-header">
-                        <span class="section-header-text">설진</span>
-                        <div class="tongue-title-section-radio">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label" for="경면설">경면설</label>
-                                <input class="form-check-input tongue" type="radio" name="설진" value="경면설">
-                            </div>
+            <div class="layout-content-tongue box_with_border">
+                <div class="tongue-header new-section-header">
+                    <span class="section-header-text">설진</span>
+                    <div class="tongue-title-section-radio">
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="경면설">경면설</label>
+                            <input class="form-check-input tongue" type="radio" name="설진" value="경면설">
+                        </div>
 
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label" for="지도설">지도설</label>
-                                <input class="form-check-input tongue" type="radio" name="설진" value="지도설">
-                            </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="지도설">지도설</label>
+                            <input class="form-check-input tongue" type="radio" name="설진" value="지도설">
                         </div>
                     </div>
+                </div>
 
-                    <div class="tongue-panel">
+                <!-- <div class="tongue-layout">
+                    <div class="tongue-layout__subpanel box_with_border">
+                        <div class="new-section-header">설체</div>
+                        <div class="tongue-layout__subpanel__item box_with_border"></div>
+                        <div class="tongue-layout__subpanel__item box_with_border"></div>
+                        <div class="tongue-layout__subpanel__item box_with_border"></div>
+                    </div>
+                    <div class="tongue-layout__subpanel box_with_border">
+                        <div class="new-section-header">설태</div>
+                        <div class="tongue-layout__subpanel__item box_with_border"></div>
+                        <div class="tongue-layout__subpanel__item box_with_border"></div>
+                        <div class="tongue-layout__subpanel__item box_with_border"></div>
+                    </div>
+                </div> -->
+
+                <div class="tongue-panel">
                         <p class="h5">설체</p>
                         <div class="tongue-detail-form">
                             <div class="form-check-inline">
@@ -840,19 +848,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="layout-ai-diagnosis">
-                <div class="box_with_border">
-                    <div class="section-header">
-                        <span class="section-header-text">인공지능처방</span>
-                    </div>
-                    <canvas id="myChart" width="400" height="400"></canvas>
-                </div>
             </div>
         </div>
 
-        <div class="layout-content-prescription">
+        <!-- <div class="layout-content-prescription">
             <div class="box_with_border">
                 <div class="section-header">
                     <span class="section-header-text">처방 입력</span>
@@ -883,7 +882,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </form>
 </div>
 
