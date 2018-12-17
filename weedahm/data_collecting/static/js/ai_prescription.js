@@ -1,5 +1,5 @@
-const MLAPI_ADDRESS = 'http://192.168.0.8:80'
-// const MLAPI_ADDRESS = 'http://127.0.0.1:8001'
+// const MLAPI_ADDRESS = 'http://192.168.0.8:80'
+const MLAPI_ADDRESS = 'http://127.0.0.1:8001'
 
 const get_paitent_list = async () => {
     let results
