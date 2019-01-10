@@ -25,15 +25,13 @@ SECRET_KEY = '2f(-smglwk-6j_-w5+-26gt71upkkj2*2v!vpebg@6+b+46@3n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.10']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'data_collecting.apps.DataCollectingConfig',
-    'his.apps.HisConfig',
-    # 'chatbot.apps.ChatbotConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
