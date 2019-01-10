@@ -47,9 +47,6 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text custom-prepend">세</div>
                             </div>
-                            <div class="invalid-feedback">
-                                정확한 나이를 입력해주세요.
-                            </div>
                         </div>
                     </div>
                     <div class="basic-information-group">
@@ -59,9 +56,6 @@
                                 style="width: 70px;" maxlength="3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text custom-prepend">cm</div>
-                            </div>
-                            <div class="invalid-feedback">
-                                정확한 키를 입력해주세요.
                             </div>
                         </div>
 
@@ -74,9 +68,6 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text custom-prepend">kg</div>
                             </div>
-                            <div class="invalid-feedback">
-                                정확한 몸무게를 입력해주세요.
-                            </div>
                         </div>
 
                     </div>
@@ -87,17 +78,11 @@
                         <label for="input-blood-high">수축기</label>
                         <input type="text" class="basic_info form-control basic-information-input" id="input-blood-high"
                             name="blood_high" style="width: 70px;" maxlength="3">
-                        <div class="invalid-feedback">
-                            정확한 혈압을 입력해주세요.
-                        </div>
                     </div>
                     <div class="basic-information-group">
                         <label for="input-blood-low">이완기</label>
                         <input type="text" class="basic_info form-control basic-information-input" id="input-blood-low"
                             name="blood_low" style="width: 70px;" maxlength="3">
-                        <div class="invalid-feedback">
-                            정확한 혈압을 입력해주세요.
-                        </div>
                     </div>
 
                     <div class="modified-date" hidden="true">
@@ -142,7 +127,7 @@
                         <input name="인" type="text" class="form-control bodychart-input-text bodychart" maxlength="1">
                     </div>
                     <div class="chart-field">
-                        <img src="/static/images/bodychart_updated_hans.png">
+                        <img src="/static/images/bodychart_updated.png">
 
                         <div class="form-check form-check-inline" style="position: absolute; top: 10px; left: 70px;">
                             <label class="bodychart-label" for="두통">두통</label>
@@ -162,7 +147,7 @@
                         <div class="form-check form-check-inline" style="position: absolute; top: 50px; left: 230px;">
                             <label class="bodychart-label" for="두중감">두중감</label>
                             <div class="bodychart-checkbox">
-                                <input name="두중감" class="bodychart" type="checkbox">
+                                <input id="두중감" name="두중감" class="bodychart" type="checkbox">
                             </div>
                         </div>
 
@@ -520,7 +505,7 @@
                         <span class="section-header-text">복진</span>
                     </div>
                     <div class="chart-field">
-                        <img src="/static/images/abdominal_hans.png">
+                        <img src="/static/images/abdominal.png">
                         <div style="position: absolute; top: -5px; left: 115px;">
                             <label class="bodychart-label" for="명치">명치</label>
                             <input name="명치" class="form-control bodychart-input-text abdominal" type="text" maxlength="5">
@@ -851,7 +836,7 @@
             </div>
         </div>
 
-        <!-- <div class="layout-content-prescription">
+        <div class="layout-content-prescription">
             <div class="box_with_border">
                 <div class="section-header">
                     <span class="section-header-text">처방 입력</span>
@@ -882,7 +867,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </form>
 </div>
 
@@ -905,6 +890,25 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                     <input type="submit" class="btn btn-danger" value="삭제">
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal__created-by-anoter-user" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">저장 실패</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>이미 다른 사용자에 의해 저장된 환자입니다</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
             </div>
         </div>
     </div>

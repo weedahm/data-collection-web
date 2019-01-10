@@ -257,7 +257,12 @@ function init_jq_post() {
         }).done(function (response) {
             $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-primary')
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
-            $('#submit-btn').val("저장성공!")
+            if(response == "Save Success") {
+                $('#submit-btn').val("저장성공!")
+            } else if(response == "Already Created") {
+                $('#submit-btn').val("저장실패!")
+                $(".modal__created-by-anoter-user").modal('show')
+            }
         }).fail(function (error) {
             $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-danger')
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
@@ -336,36 +341,6 @@ function sumDoses() {
         $sum.html(currentDose)
     })
 }
-
-// function init_chart() {
-//     var ctx = document.getElementById("myChart").getContext('2d');
-//     var myChart = new Chart(ctx, {
-//         type: 'radar',
-//         data: {
-//             labels: ["담적", "소화", "신경", "순환", "기타", "특정"],
-//             datasets: [{
-//                 backgroundColor: "rgba(3, 88, 106, 0.2)",
-//                 borderColor: "rgba(3, 88, 106, 0.80)",
-//                 pointBorderColor: "rgba(3, 88, 106, 0.80)",
-//                 pointBackgroundColor: "rgba(3, 88, 106, 0.80)",
-//                 pointHoverBackgroundColor: "#fff",
-//                 pointHoverBorderColor: "rgba(220,220,220,1)",
-//                 data: [90, 59, 40, 35, 78, 66]
-//             }]
-//         },
-//         options: {
-//             legend: {
-//                 display: false
-//             },
-//             scale: {
-//                 ticks: {
-//                     beginAtZero: true,
-//                     max: 100
-//                 }
-//             }
-//         }
-//     });
-// }
 
 $(document).ready(function ($) {
     init_datatimepicker();

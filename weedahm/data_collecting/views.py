@@ -43,8 +43,7 @@ def patient(request, chart_id):
         patient = Patient.objects.get(chart_id=chart_id)
     except Patient.DoesNotExist:
         return JsonResponse({})
-    # encoded = json.dumps(patient.json_data, indent=4, sort_keys=True, ensure_ascii=False)
-    # print(encoded)
+
     last_modified = patient.created_date.strftime("%Y-%m-%d")
     patient.json_data["last_modified"] = last_modified
     return JsonResponse(patient.json_data)
@@ -52,7 +51,8 @@ def patient(request, chart_id):
 @login_required(login_url='/login')
 def patients(request):
     try:
-        patient = Patient.objects.all().order_by("-chart_id")
+        patient = Patient.objects.filter(created_user=request.user).order_by("-chart_id")
+        # patient = Patient.objects.all().order_by("-chart_id")
     except Patient.DoesNotExist:
         return JsonResponse({})
     chart_ids = list((patient.values('chart_id')))
@@ -67,11 +67,14 @@ def submit(request):
         p = Patient(
             chart_id = chart_id,
             json_data = received_json_data,
+            created_user = request.user,
         )
         p.save()
         return HttpResponse("Save Success")
     else:
-        if received_json_data != patient[0].json_data:
+        if patient[0].created_user != request.user:
+            return HttpResponse("Already Created")
+        elif received_json_data != patient[0].json_data:
             patient.update(json_data=received_json_data)
             return HttpResponse("Update Success")
         else:
