@@ -301,7 +301,6 @@ function init_jq_post() {
         }).always(function () {
             setTimeout(job_done, 1500)
             get_patient_list()
-            init_get_number_of_patient()
         });
     });
 }
