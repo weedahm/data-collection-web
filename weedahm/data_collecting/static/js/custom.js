@@ -288,7 +288,8 @@ function init_jq_post() {
         }).done(function (response) {
             $('#submit-btn').removeClass('btn-secondary disabled').addClass('btn-primary')
             $('#submit-btn').children(".fa").removeClass('fa-refresh fa-spin')
-            if(response == "Save Success") {
+            console.log(response)
+            if((response == "Save Success") || (response == "Update Success"))  {
                 $('#submit-btn').val("저장성공!")
             } else if(response == "Already Created") {
                 $('#submit-btn').val("저장실패!")
