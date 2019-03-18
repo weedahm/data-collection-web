@@ -1,0 +1,16 @@
+<div class="logo">
+    <a href='/'><img src="/static/images/logo.png"></a>
+</div>
+<div class="header__menu">
+    <span class="header__menu__item"><a class="non-active" href="/">환자 정보 입력</a></span>
+    <span class="header__menu__item"><a class="non-active" href="/ai_prescription">인공지능 처방전</a></span>
+</div>
+{% if is_anonymous %}
+{% else %}
+{% if user %}
+<div class="header__logout">
+    <span>환영합니다! {{ user.username }}님</span>
+    <a class="btn btn-secondary btn-sm" style="margin-left: 1rem" href="/logout">로그아웃</a>
+</div>
+{% endif %}
+{% endif %}
