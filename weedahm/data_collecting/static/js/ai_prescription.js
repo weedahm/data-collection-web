@@ -7,7 +7,8 @@ const get_paitent_list = async () => {
         results = await $.ajax({
             url: '/patients',
             type: "GET",
-            dataType: "json"
+            dataType: "json",
+            data: null
         })
         return results
     } catch (jqXHR) {
@@ -135,7 +136,7 @@ function add_drugs(target_id, drug_name, drug_cap) {
 $(document).ready(function ($) {
     get_paitent_list().then((response) => {
         var $list = $('.list-patient')
-        $.each(response, function (_, value) {
+        $.each(response.chart_id, function (_, value) {
             $.each(value, function (_, val) {
                 var a_list = document.createElement('a')
                 a_list.className = 'list-group-item list-group-item-action'
