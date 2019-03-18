@@ -7,42 +7,36 @@ from django.contrib import auth
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
-from django.contrib.auth import get_user_model
 
 from .models import Patient
 
 import json
 
-
 def login(request):
     if request.user.is_anonymous:
-        context = {'is_anonymous': True}
+        context = { 'is_anonymous': True }
         return render(request, 'data_collecting/login.html', context=context)
     return render(request, 'data_collecting/login.html')
 
-
 def authenticate(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = auth.authenticate(request, username=username, password=password)
-    if user is not None:
-        auth.login(request, user)
-        return HttpResponseRedirect(reverse('data_collecting:index'))
-    else:
-        return HttpResponseRedirect(reverse('data_collecting:login'))
-
+	username = request.POST['username']
+	password = request.POST['password']
+	user = auth.authenticate(request, username=username, password=password)
+	if user is not None:
+		auth.login(request, user)
+		return HttpResponseRedirect(reverse('data_collecting:index'))
+	else:
+		return HttpResponseRedirect(reverse('data_collecting:login'))
 
 def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect(reverse('data_collecting:login'))
-
+	auth.logout(request)
+	return HttpResponseRedirect(reverse('data_collecting:login'))
 
 @login_required(login_url='/login')
 def index(request):
     current_user = request.user
-    context = {'user': current_user}
+    context = { 'user': current_user }
     return render(request, 'data_collecting/main.html', context=context)
-
 
 @login_required(login_url='/login')
 def patient(request, chart_id):
@@ -57,32 +51,31 @@ def patient(request, chart_id):
         patient.json_data["created_user"] = str(patient.created_user)
     return JsonResponse(patient.json_data)
 
-
 @login_required(login_url='/login')
 def patients(request):
-    n_createdBy = []
-    selected_user_name = request.GET.get('selected_user')
-    
     try:
-        total_n_patients = Patient.objects.count()
-        your_n_patients = Patient.objects.filter(created_user=request.user).count()
-
         if request.user.is_superuser:
-            n_createdBy = list(Patient.objects.values('created_user__username').annotate(Count('created_user')).order_by('-created_user__count'))
-            if selected_user_name is None:
-                patient = Patient.objects.all().order_by("-chart_id")
-            else:
-                user_name = get_user_model().objects.get(username=selected_user_name)
-                patient = Patient.objects.filter(created_user=user_name).order_by("-chart_id")
+            patient = Patient.objects.all().order_by("-chart_id")
         else:
-            patient = Patient.objects.filter(created_user=request.user).order_by("-chart_id")
+            patient = Patient.objects.filter(created_user=request.user).order_by("-chart_id")    
     except Patient.DoesNotExist:
         return JsonResponse({})
     chart_ids = list((patient.values('chart_id')))
+    return JsonResponse(chart_ids, safe=False)
+
+@login_required(login_url='/login')
+def num_patients(request):
+    n_createdBy = []
+    try:
+        total_n_patients = Patient.objects.count()
+        your_n_patients = Patient.objects.filter(created_user=request.user).count()
+        if request.user.is_superuser:
+            n_createdBy = list(Patient.objects.values('created_user__username').annotate(Count('created_user')).order_by('-created_user__count'))
+    except Patient.DoesNotExist:
+        return JsonResponse({})
     return JsonResponse({'total_n_patients': total_n_patients,
-                            'your_n_patients': your_n_patients,
-                            'n_createdBy': n_createdBy,
-                            'chart_id': chart_ids}, safe=False)
+                        'your_n_patients': your_n_patients,
+                        'n_createdBy': n_createdBy})
 
 @login_required(login_url='/login')
 def submit(request):
@@ -91,9 +84,9 @@ def submit(request):
     patient = Patient.objects.filter(chart_id=chart_id)
     if not patient.exists():
         p = Patient(
-            chart_id=chart_id,
-            json_data=received_json_data,
-            created_user=request.user,
+            chart_id = chart_id,
+            json_data = received_json_data,
+            created_user = request.user,
         )
         p.save()
         return HttpResponse("Save Success")
@@ -106,7 +99,6 @@ def submit(request):
         else:
             return HttpResponse("No Changes")
 
-
 @login_required(login_url='/login')
 def delete(request):
     received_json_data = json.loads(request.body)
@@ -117,10 +109,10 @@ def delete(request):
         return HttpResponse("Delete Success")
     else:
         return HttpResponse("Delete Rejected")
-
+    
 
 @login_required(login_url='/ai_prescription')
 def ai_prescription(request):
     current_user = request.user
-    context = {'user': current_user}
+    context = { 'user': current_user }
     return render(request, 'data_collecting/ai_prescription.html', context=context)
