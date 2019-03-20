@@ -102,7 +102,9 @@ function init_chart() {
             scale: {
                 ticks: {
                     beginAtZero: true,
-                    max: 100
+                    max: 100,
+                    min: -10,
+                    stepSize: 25
                 },
                 pointLabels: {
                     fontSize: 16
@@ -130,8 +132,10 @@ function add_drugs(target_id, drug_name, drug_cap) {
     new_item += '<span class="content__right__ai-medicine__list__item--tag">' + drug_name + '</span>'
     new_item += '<div><span class="content__right__ai-medicine__list__item--gram">' + drug_cap + '</span><span class="content__right__ai-medicine__list__item--tag"> mg</span></div>'
     new_item += '</div>'
-    $("#" + target_id).append(new_item)
+    $(target_id).append(new_item)
 }
+
+const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
 
 $(document).ready(function ($) {
     get_paitent_list().then((response) => {
@@ -201,18 +205,21 @@ $(document).ready(function ($) {
                 }
                 if (result.SET) {
                     if (result.SET.SET1) {
+                        document.getElementById('drug-sum-1').innerHTML = sumValues(result.SET.SET1)
                         for (const [key, value] of Object.entries(result.SET.SET1)) {
-                            add_drugs("drug-set-1", key, value)
+                            if(value != 0) { add_drugs(set1, key, value) }
                         }
                     }
                     if (result.SET.SET2) {
+                        document.getElementById('drug-sum-2').innerHTML = sumValues(result.SET.SET2)
                         for (const [key, value] of Object.entries(result.SET.SET2)) {
-                            add_drugs("drug-set-2", key, value)
+                            if(value != 0) { add_drugs(set2, key, value) }
                         }
                     }
                     if (result.SET.SET3) {
+                        document.getElementById('drug-sum-3').innerHTML = sumValues(result.SET.SET3)
                         for (const [key, value] of Object.entries(result.SET.SET3)) {
-                            add_drugs("drug-set-3", key, value)
+                            if(value != 0) { add_drugs(set3, key, value) }
                         }
                     }
                 }

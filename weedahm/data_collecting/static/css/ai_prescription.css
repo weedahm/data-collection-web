@@ -169,8 +169,7 @@
 
     border: 1px solid #dee3eb;
     background-color: #f8f9fa;
-    margin-left: 8px;
-    margin-right: 8px;
+
     overflow-y: scroll;
 }
 
@@ -196,4 +195,29 @@
     font-weight: bold;
     color: #868e96;
     font-size: 23px;
+}
+
+.content__right__ai-medicine__sum {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 10px;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.content__right__ai-medicine__sum h5 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.content__right__ai-medicine__sum span {
+    font-weight: bold;
+}
+
+.drug-set-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    margin-right: 8px;
 }

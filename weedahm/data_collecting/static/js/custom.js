@@ -49,7 +49,6 @@ function init_vaild_check() {
                 var tokens = key.split("_")
                 switch (tokens[0]) {
                     case '처방1':
-                        $tbody
                         $('.prescription.first').find('tbody').append(get_table_row(tokens[1], value))
                         break;
                     case '처방2':

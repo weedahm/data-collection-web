@@ -4,7 +4,8 @@
 {% endblock stylesheets %}
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.ko.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.ko.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="/static/js/ai_prescription.js"></script>
 <!-- <script src="/static/js/custom.js"></script> -->
@@ -19,7 +20,8 @@
             </div>
             <div class="content__left__patient-list__layout scrollbar-default">
                 <div class="force-overflow">
-                    <div id="patientList" class="list-patient list-group list-group-flush" id="list-tab" role="tablist"></div>
+                    <div id="patientList" class="list-patient list-group list-group-flush" id="list-tab" role="tablist">
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,42 +98,48 @@
                     <div class="content__right__ai-point__layout__discriptions__item">
                         <span class="content__right__ai-point__layout__discriptions__item__title">
                             담적
-                            <span id="point-damzuk" class="content__right__ai-point__layout__discriptions__item__point"></span>
+                            <span id="point-damzuk"
+                                class="content__right__ai-point__layout__discriptions__item__point"></span>
                             <span class="content__right__ai-point__layout__discriptions__item__appix"> 점</span>
                         </span>
                     </div>
                     <div class="content__right__ai-point__layout__discriptions__item">
                         <span class="content__right__ai-point__layout__discriptions__item__title">
                             소화
-                            <span id="point-sohwa" class="content__right__ai-point__layout__discriptions__item__point"></span>
+                            <span id="point-sohwa"
+                                class="content__right__ai-point__layout__discriptions__item__point"></span>
                             <span class="content__right__ai-point__layout__discriptions__item__appix"> 점</span>
                         </span>
                     </div>
                     <div class="content__right__ai-point__layout__discriptions__item">
                         <span class="content__right__ai-point__layout__discriptions__item__title">
                             신경
-                            <span id="point-sinkyung" class="content__right__ai-point__layout__discriptions__item__point"></span>
+                            <span id="point-sinkyung"
+                                class="content__right__ai-point__layout__discriptions__item__point"></span>
                             <span class="content__right__ai-point__layout__discriptions__item__appix"> 점</span>
                         </span>
                     </div>
                     <div class="content__right__ai-point__layout__discriptions__item">
                         <span class="content__right__ai-point__layout__discriptions__item__title">
                             순환
-                            <span id="point-soonhwan" class="content__right__ai-point__layout__discriptions__item__point"></span>
+                            <span id="point-soonhwan"
+                                class="content__right__ai-point__layout__discriptions__item__point"></span>
                             <span class="content__right__ai-point__layout__discriptions__item__appix"> 점</span>
                         </span>
                     </div>
                     <div class="content__right__ai-point__layout__discriptions__item">
                         <span class="content__right__ai-point__layout__discriptions__item__title">
                             기타
-                            <span id="point-guitar" class="content__right__ai-point__layout__discriptions__item__point"></span>
+                            <span id="point-guitar"
+                                class="content__right__ai-point__layout__discriptions__item__point"></span>
                             <span class="content__right__ai-point__layout__discriptions__item__appix"> 점</span>
                         </span>
                     </div>
                     <div class="content__right__ai-point__layout__discriptions__item">
                         <span class="content__right__ai-point__layout__discriptions__item__title">
                             특정
-                            <span id="point-tukjung" class="content__right__ai-point__layout__discriptions__item__point"></span>
+                            <span id="point-tukjung"
+                                class="content__right__ai-point__layout__discriptions__item__point"></span>
                             <span class="content__right__ai-point__layout__discriptions__item__appix"> 점</span>
                         </span>
                     </div>
@@ -143,14 +151,35 @@
                 <span class="section-header-text">AI 추천 약재 처방</span>
             </div>
             <div class="content__right__ai-medicine__layout">
-                <div id="drug-set-1" class="content__right__ai-medicine__list scrollbar-default list-group list-group-flush">
-                    
-                </div>
-                <div id="drug-set-2" class="content__right__ai-medicine__list scrollbar-default list-group list-group-flush">
+                <div class="drug-set-div">
+                    <div class="content__right__ai-medicine__sum">
+                        <div><h5>처방 1</h5></div>
+                        <div>용량합계: <span id="drug-sum-1"></span> mg</div>
+                    </div>
+                    <div id="drug-set-1"
+                        class="content__right__ai-medicine__list scrollbar-default list-group list-group-flush">
 
+                    </div>
                 </div>
-                <div id="drug-set-3" class="content__right__ai-medicine__list scrollbar-default list-group list-group-flush">
+                <div class="drug-set-div">
+                    <div class="content__right__ai-medicine__sum">
+                        <div><h5>처방 2</h5></div>
+                        <div>용량합계: <span id="drug-sum-2"></span> mg</div>
+                    </div>
+                    <div id="drug-set-2"
+                        class="content__right__ai-medicine__list scrollbar-default list-group list-group-flush">
 
+                    </div>
+                </div>
+                <div class="drug-set-div">
+                    <div class="content__right__ai-medicine__sum">
+                        <div><h5>처방 3</h5></div>
+                        <div>용량합계: <span id="drug-sum-3"></span> mg</div>
+                    </div>
+                    <div id="drug-set-3"
+                        class="content__right__ai-medicine__list scrollbar-default list-group list-group-flush">
+
+                    </div>
                 </div>
             </div>
         </div>
